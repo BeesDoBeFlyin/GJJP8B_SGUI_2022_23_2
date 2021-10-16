@@ -2,29 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GJJP8B_HFT_2021221.Models
 {
-    [Table("cheeses")]
-    public class Cheese
+    public class Milk
     {
         [Key]
-        public int CheeseId { get; set; }
-        public string Name { get; set; }
-        public float Price { get; set; }
-        [ForeignKey(nameof(Milk))]
         public int MilkId { get; set; }
+        public string MilkName { get; set; }
+        public float MilkPrice { get; set; }
     }
 
-    public class CheeseContext : DbContext
+    public class MilkContext : DbContext
     {
-        public virtual DbSet<Cheese> Cheeses { get; set; }
+        public virtual DbSet<Milk> Milks { get; set; }
 
-        public CheeseContext()
+        public MilkContext()
         {
             this.Database.EnsureCreated();
         }
@@ -33,14 +29,12 @@ namespace GJJP8B_HFT_2021221.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                /** not working >:(
+                /** same with cheese :(
                 optionsBuilder
                     .UseLazyLoadingProxies();
                     .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True");
                 */
             }
         }
-
-
     }
 }

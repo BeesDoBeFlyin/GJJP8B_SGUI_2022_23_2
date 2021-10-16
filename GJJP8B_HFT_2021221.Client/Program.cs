@@ -9,13 +9,15 @@ namespace GJJP8B_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Creating test cheeses!");
+            Console.WriteLine("Creating test stuff!");
+
+            MilkContext md = new MilkContext();
 
             CheeseContext cd = new CheeseContext();
 
-            cd.Cheeses.Add(new Cheese() { Name = "Cheddar", Price = 3500 });
-            cd.Cheeses.Add(new Cheese() { Name = "Trapista", Price = 1500 });
-            cd.Cheeses.Add(new Cheese() { Name = "Bear", Price = 680 });
+            cd.Cheeses.Add(new Cheese() { Name = "Cheddar", Price = 3500, MilkId = 1});
+            cd.Cheeses.Add(new Cheese() { Name = "Trapista", Price = 1500, MilkId = 0});
+            cd.Cheeses.Add(new Cheese() { Name = "Bear", Price = 680, MilkId = 1});
 
             cd.SaveChanges();
 
