@@ -13,7 +13,12 @@ namespace GJJP8B_HFT_2021221.Client
 
             MilkContext md = new MilkContext();
 
-            md.Milks.Add(new Milk() { MilkName = "CowCheese", MilkPrice = 500 });
+            md.Milks.Add(new Milk() { MilkName = "CowMilk", MilkPrice = 500 });
+            md.Milks.Add(new Milk() { MilkName = "GoatMilk", MilkPrice = 700 });
+
+            md.SaveChanges();
+
+            Console.WriteLine("Test milks created!");
 
             CheeseContext cd = new CheeseContext();
 
@@ -23,13 +28,25 @@ namespace GJJP8B_HFT_2021221.Client
 
             cd.SaveChanges();
 
+            Console.WriteLine("Test cheeses created!");
+
             // Reading all the created stuff
+            foreach (var item in md.Milks)
+            {
+                Console.WriteLine($"{item.MilkId} - {item.MilkName}, price {item.MilkPrice}.");
+            }
+
             foreach (var item in cd.Cheeses)
             {
                 Console.WriteLine($"{item.CheeseId} - {item.CheeseName}, price {item.CheesePrice} and is made of {item.MilkId}.");
             }
 
-            // Purge database after
+            // Purge databases after
+
+            md.Milks.RemoveRange(md.Milks);
+            md.SaveChanges();
+
+            Console.WriteLine("Test milks purged!");
 
             cd.Cheeses.RemoveRange(cd.Cheeses);
             cd.SaveChanges();
