@@ -31,12 +31,14 @@ namespace GJJP8B_HFT_2021221.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                /** NOT WORKING?
-                optionsBuilder.
+                /** not working >:(
+                optionsBuilder
                     .UseLazyLoadingProxies();
                     .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True");
                 */
             }
         }
+
+
     }
 }
