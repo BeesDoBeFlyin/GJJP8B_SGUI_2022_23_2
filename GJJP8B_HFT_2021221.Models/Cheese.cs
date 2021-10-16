@@ -14,8 +14,8 @@ namespace GJJP8B_HFT_2021221.Models
     {
         [Key]
         public int CheeseId { get; set; }
-        public string Name { get; set; }
-        public float Price { get; set; }
+        public string CheeseName { get; set; }
+        public float CheesePrice { get; set; }
         [ForeignKey(nameof(Milk))]
         public int MilkId { get; set; }
     }

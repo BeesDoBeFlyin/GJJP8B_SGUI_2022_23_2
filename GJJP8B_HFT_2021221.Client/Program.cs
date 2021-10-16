@@ -13,18 +13,20 @@ namespace GJJP8B_HFT_2021221.Client
 
             MilkContext md = new MilkContext();
 
+            md.Milks.Add(new Milk() { MilkName = "CowCheese", MilkPrice = 500 });
+
             CheeseContext cd = new CheeseContext();
 
-            cd.Cheeses.Add(new Cheese() { Name = "Cheddar", Price = 3500, MilkId = 1});
-            cd.Cheeses.Add(new Cheese() { Name = "Trapista", Price = 1500, MilkId = 0});
-            cd.Cheeses.Add(new Cheese() { Name = "Bear", Price = 680, MilkId = 1});
+            cd.Cheeses.Add(new Cheese() { CheeseName = "Cheddar", CheesePrice = 3500, MilkId = 1});
+            cd.Cheeses.Add(new Cheese() { CheeseName = "Trapista", CheesePrice = 1500, MilkId = 0});
+            cd.Cheeses.Add(new Cheese() { CheeseName = "Bear", CheesePrice = 680, MilkId = 1});
 
             cd.SaveChanges();
 
             // Reading all the created stuff
             foreach (var item in cd.Cheeses)
             {
-                Console.WriteLine($"{item.CheeseId} - {item.Name}, price: {item.Price}");
+                Console.WriteLine($"{item.CheeseId} - {item.CheeseName}, price {item.CheesePrice} and is made of {item.MilkId}.");
             }
 
             // Purge database after
