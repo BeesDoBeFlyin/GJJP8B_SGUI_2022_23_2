@@ -30,6 +30,14 @@ namespace GJJP8B_HFT_2021221.Client
 
             Console.WriteLine("Test cheeses created!");
 
+            BuyerContext bd = new BuyerContext();
+
+            bd.Buyers.Add(new Buyer() { BuyerName = "Test Ferenc", CheeseId = 1 });
+            bd.Buyers.Add(new Buyer() { BuyerName = "Teás K. Anna", CheeseId = 0 });
+            bd.Buyers.Add(new Buyer() { BuyerName = "Generic Guy", CheeseId = 2 });
+
+            Console.WriteLine("Test buyers created!");
+
             // Reading all the created stuff
             foreach (var item in md.Milks)
             {
@@ -39,6 +47,11 @@ namespace GJJP8B_HFT_2021221.Client
             foreach (var item in cd.Cheeses)
             {
                 Console.WriteLine($"{item.CheeseId} - {item.CheeseName}, price {item.CheesePrice} and is made of {item.MilkId}.");
+            }
+
+            foreach (var item in bd.Buyers)
+            {
+                Console.WriteLine($"{item.BuyerId} - {item.BuyerName}, cheese preference {item.BuyerName}.");
             }
 
             // Purge databases after
@@ -52,6 +65,11 @@ namespace GJJP8B_HFT_2021221.Client
             cd.SaveChanges();
 
             Console.WriteLine("Test cheeses purged!");
+
+            bd.Buyers.RemoveRange(bd.Buyers);
+            bd.SaveChanges();
+
+            Console.WriteLine("Test buyers purged!");
         }
     }
 }
