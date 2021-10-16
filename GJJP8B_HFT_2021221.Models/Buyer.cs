@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Common;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GJJP8B_HFT_2021221.Models
 {
@@ -31,7 +31,7 @@ namespace GJJP8B_HFT_2021221.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                /** same with cheese :(
+                /** still no work
                 optionsBuilder
                     .UseLazyLoadingProxies();
                     .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True");
