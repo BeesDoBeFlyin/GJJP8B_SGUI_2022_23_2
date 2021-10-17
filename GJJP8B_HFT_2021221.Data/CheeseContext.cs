@@ -49,6 +49,31 @@ namespace GJJP8B_HFT_2021221.Data
             });
         }
     }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            CheeseContext cd = new CheeseContext();
+
+            Milk m1 = new Milk() { Name = "CowMilk", Price = 500 };
+            Milk m2 = new Milk() { Name = "GoatMilk", Price = 720 };
+            Cheese c1 = new Cheese() { Name = "Cheddar", Price = 1500 };
+            Cheese c2 = new Cheese() { Name = "GoatCheese", Price = 3500 };
+            Cheese c3 = new Cheese() { Name = "Maci", Price = 850 };
+            Buyer b1 = new Buyer() { Name = "Test Ferenc" };
+            Buyer b2 = new Buyer() { Name = "Teás K. Anna" };
+            Buyer b3 = new Buyer() { Name = "Generic Gery" };
+
+            m1.Cheeses.Add(c1);
+            m1.Cheeses.Add(c3);
+            m2.Cheeses.Add(c2);
+
+            c1.Buyers.Add(b2);
+            c2.Buyers.Add(b1);
+            c3.Buyers.Add(b3);
+        }
+    }
     //static void Main(string[] args)
     //{
     //    Console.WriteLine("Creating test stuff!");
