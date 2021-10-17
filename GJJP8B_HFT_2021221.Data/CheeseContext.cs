@@ -39,6 +39,14 @@ namespace GJJP8B_HFT_2021221.Data
                     .HasForeignKey(cheese => cheese.MilkId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
+
+            modelBuilder.Entity<Buyer>(entity =>
+            {
+                entity.HasOne(buyer => buyer.Cheese)
+                .WithMany(cheese => cheese.Buyers)
+                .HasForeignKey(buyer => buyer.CheeseId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            });
         }
     }
     //static void Main(string[] args)

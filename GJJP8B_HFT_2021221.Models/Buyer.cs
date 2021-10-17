@@ -10,6 +10,8 @@ namespace GJJP8B_HFT_2021221.Models
         [Key]
         public int Id { get; set; }
         public String Name { get; set; }
+        [NotMapped]
+        public virtual Cheese Cheese { get; set; }
         [ForeignKey(nameof(Cheese))]
         public int CheeseId { get; set; }
     }
