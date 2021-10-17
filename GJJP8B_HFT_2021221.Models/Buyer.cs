@@ -13,5 +13,7 @@ namespace GJJP8B_HFT_2021221.Models
         public int Id { get; set; }
         public String Name { get; set; }
         public int Money { get; set; }
+        [ForeignKey("preferredCheese")]
+        public int CheeseId { get; set; }
     }
 }

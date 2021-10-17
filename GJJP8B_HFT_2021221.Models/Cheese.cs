@@ -17,6 +17,8 @@ namespace GJJP8B_HFT_2021221.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
+        [ForeignKey("madeOf")]
+        public int MilkId { get; set; }
 
     }
 }

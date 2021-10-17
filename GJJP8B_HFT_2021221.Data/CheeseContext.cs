@@ -40,13 +40,13 @@ namespace GJJP8B_HFT_2021221.Data
             Milk m1 = new Milk { Id = 1, Name = "CowMilk", Price = 250 };
             Milk m2 = new Milk { Id = 2, Name = "GoatMilk", Price = 550 };
 
-            Cheese c1 = new Cheese { Id = 1, Name = "Cheddar", Price = 1500 };
-            Cheese c2 = new Cheese{ Id = 2, Name = "GoatCheese", Price = 3500 };
-            Cheese c3 = new Cheese{ Id = 3, Name = "Maci", Price = 850 };
+            Cheese c1 = new Cheese { Id = 1, Name = "Cheddar", Price = 1500, MilkId = 1};
+            Cheese c2 = new Cheese{ Id = 2, Name = "GoatCheese", Price = 3500, MilkId = 2};
+            Cheese c3 = new Cheese{ Id = 3, Name = "Maci", Price = 850, MilkId = 1};
 
-            Buyer b1 = new Buyer { Id = 1, Name = "Test Ferenc", Money = 5500 };
-            Buyer b2 = new Buyer { Id = 2, Name = "Teás K. Anna", Money = 9800 };
-            Buyer b3 = new Buyer() { Id = 3, Name = "Generic Gery", Money = 6500 };
+            Buyer b1 = new Buyer { Id = 1, Name = "Test Ferenc", Money = 5500, CheeseId = 1};
+            Buyer b2 = new Buyer { Id = 2, Name = "Teás K. Anna", Money = 9800, CheeseId = 1};
+            Buyer b3 = new Buyer() { Id = 3, Name = "Generic Gery", Money = 6500, CheeseId = 3};
         }
     }
 }
