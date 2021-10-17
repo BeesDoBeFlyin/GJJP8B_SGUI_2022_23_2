@@ -21,15 +21,21 @@ namespace GJJP8B_HFT_2021221.Client
 
             // WRINTING OUT TEST DATA
 
+            Console.WriteLine("###### Milks ######");
+
             foreach (var item in cd.Milks)
             {
                 Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
             }
 
+            Console.WriteLine("### Cheeses ###");
+
             foreach (var item in cd.Cheeses)
             {
                 Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
             }
+
+            Console.WriteLine("### Buyers ###");
 
             foreach (var item in cd.Buyers)
             {
