@@ -14,15 +14,14 @@ namespace GJJP8B_HFT_2021221.Data
         public DbSet<Milk> Milks { get; set; }
         public DbSet<Cheese> Cheeses { get; set; }
         public DbSet<Buyer> Buyers { get; set; }
+        public CheeseContext()
+        {
+            this.Database.EnsureCreated();
+        }
 
         public CheeseContext(DbContextOptions<CheeseContext> options) : base(options)
         {
            
-        }
-
-        public CheeseContext()
-        {
-            this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
