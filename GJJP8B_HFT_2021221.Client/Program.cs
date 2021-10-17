@@ -39,17 +39,17 @@ namespace GJJP8B_HFT_2021221.Client
 
             foreach (var item in cd.Milks)
             {
-                Console.WriteLine($"{item.Id} - {item.Name}");
+                Console.WriteLine($"{item.Id} - {item.Name}.");
             }
 
             foreach (var item in cd.Cheeses)
             {
-                Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}, made from {cd.Milks.Find(item.MilkId).Name}");
+                Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
             }
 
             foreach (var item in cd.Buyers)
             {
-                Console.WriteLine($"{item.Id} - {item.Name}, prefers {cd.Cheeses.Find(item.CheeseId).Name}");
+                Console.WriteLine($"{item.Id} - {item.Name}, with {item.Money} money.");
             }
         }
     }
