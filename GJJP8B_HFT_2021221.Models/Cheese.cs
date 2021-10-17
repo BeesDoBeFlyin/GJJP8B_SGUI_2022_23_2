@@ -23,20 +23,4 @@ namespace GJJP8B_HFT_2021221.Models
         public virtual ICollection<Buyer> Buyers { get; set; }
 
     }
-
-    //public class CheeseContext : DbContext
-    //{
-    //    public virtual DbSet<Cheese> Cheeses { get; set; }
-
-    //    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //    //{
-    //    //    if (!optionsBuilder.IsConfigured)
-    //    //    {
-    //    //        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\CheeseDatabase1.mdf;Integrated Security=True;MultipleActiveResultSets=True";
-    //    //        optionsBuilder
-    //    //            .UseLazyLoadingProxies()
-    //    //            .UseSqlServer(connectionString);
-    //    //    }
-    //    //}
-    //}
 }
