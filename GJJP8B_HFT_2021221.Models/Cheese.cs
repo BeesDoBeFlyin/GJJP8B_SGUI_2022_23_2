@@ -13,9 +13,9 @@ namespace GJJP8B_HFT_2021221.Models
     public class Cheese
     {
         [Key]
-        public int CheeseId { get; set; }
-        public string CheeseName { get; set; }
-        public float CheesePrice { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public float Price { get; set; }
         [ForeignKey(nameof(Milk))]
         public int MilkId { get; set; }
     }
@@ -33,7 +33,7 @@ namespace GJJP8B_HFT_2021221.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True";
+                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\CheeseDatabase1.mdf;Integrated Security=True;MultipleActiveResultSets=True";
                 optionsBuilder
                     .UseLazyLoadingProxies()
                     .UseSqlServer(connectionString);

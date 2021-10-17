@@ -11,9 +11,9 @@ namespace GJJP8B_HFT_2021221.Models
     public class Milk
     {
         [Key]
-        public int MilkId { get; set; }
-        public string MilkName { get; set; }
-        public float MilkPrice { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public float Price { get; set; }
     }
 
     public class MilkContext : DbContext
@@ -27,7 +27,7 @@ namespace GJJP8B_HFT_2021221.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True";
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True;MultipleActiveResultSets=True";
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
