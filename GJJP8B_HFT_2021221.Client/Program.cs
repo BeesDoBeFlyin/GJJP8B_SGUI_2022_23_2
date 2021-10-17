@@ -24,6 +24,7 @@ namespace GJJP8B_HFT_2021221.Client
             Buyer b2 = new Buyer() { Name = "Teás K. Anna" };
             Buyer b3 = new Buyer() { Name = "Generic Gery" };
 
+
             m1.Cheeses.Add(c1);
             m1.Cheeses.Add(c3);
             m2.Cheeses.Add(c2);
