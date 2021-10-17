@@ -33,11 +33,10 @@ namespace GJJP8B_HFT_2021221.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                /** not working >:(
+                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True";
                 optionsBuilder
-                    .UseLazyLoadingProxies();
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True");
-                */
+                    .UseLazyLoadingProxies()
+                    .UseSqlServer(connectionString);
             }
         }
 

@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Common;
-using System.Linq;
 
 namespace GJJP8B_HFT_2021221.Models
 {
@@ -29,13 +25,12 @@ namespace GJJP8B_HFT_2021221.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True";
             if (!optionsBuilder.IsConfigured)
             {
-                /** still no work
                 optionsBuilder
-                    .UseLazyLoadingProxies();
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True");
-                */
+                    .UseLazyLoadingProxies()
+                    .UseSqlServer(connectionString);
             }
         }
     }

@@ -27,13 +27,12 @@ namespace GJJP8B_HFT_2021221.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True";
             if (!optionsBuilder.IsConfigured)
             {
-                /** same with cheese :(
                 optionsBuilder
-                    .UseLazyLoadingProxies();
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BlogDatabase.mdf; Integrated Security=True; MultipleActiveResultSets=True");
-                */
+                    .UseLazyLoadingProxies()
+                    .UseSqlServer(connectionString);
             }
         }
     }
