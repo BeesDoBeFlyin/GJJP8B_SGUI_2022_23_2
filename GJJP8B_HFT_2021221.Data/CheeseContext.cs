@@ -72,6 +72,11 @@ namespace GJJP8B_HFT_2021221.Data
             c1.Buyers.Add(b2);
             c2.Buyers.Add(b1);
             c3.Buyers.Add(b3);
+
+            cd.Milks.Add(m1);
+            cd.Milks.Add(m2);
+
+            cd.SaveChanges();
         }
     }
     //static void Main(string[] args)
