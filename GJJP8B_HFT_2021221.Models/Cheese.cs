@@ -16,11 +16,6 @@ namespace GJJP8B_HFT_2021221.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
-        [NotMapped]
-        public virtual Milk Milk { get; set; }
-        [ForeignKey(nameof(Milk))]
-        public int MilkId { get; set; }
-        public virtual ICollection<Buyer> Buyers { get; set; }
 
     }
 }

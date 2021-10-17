@@ -32,21 +32,21 @@ namespace GJJP8B_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Cheese>(entity =>
-            {
-                entity.HasOne(cheese => cheese.Milk)
-                    .WithMany(milk => milk.Cheeses)
-                    .HasForeignKey(cheese => cheese.MilkId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-            });
+            //modelBuilder.Entity<Cheese>(entity =>
+            //{
+            //    entity.HasOne(cheese => cheese.Milk)
+            //        .WithMany(milk => milk.Cheeses)
+            //        .HasForeignKey(cheese => cheese.MilkId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull);
+            //});
 
-            modelBuilder.Entity<Buyer>(entity =>
-            {
-                entity.HasOne(buyer => buyer.Cheese)
-                .WithMany(cheese => cheese.Buyers)
-                .HasForeignKey(buyer => buyer.CheeseId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-            });
+            //modelBuilder.Entity<Buyer>(entity =>
+            //{
+            //    entity.HasOne(buyer => buyer.Cheese)
+            //    .WithMany(cheese => cheese.Buyers)
+            //    .HasForeignKey(buyer => buyer.CheeseId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull);
+            //});
         }
     }
 }
