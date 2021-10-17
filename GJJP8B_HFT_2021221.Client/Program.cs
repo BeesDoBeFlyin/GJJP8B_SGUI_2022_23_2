@@ -43,6 +43,7 @@ namespace GJJP8B_HFT_2021221.Client
             }
 
             Console.WriteLine("Done! Exiting!");
+            Console.ReadKey();
         }
     }
 }

@@ -11,9 +11,14 @@ namespace GJJP8B_HFT_2021221.Data
     public class CheeseContext : DbContext
     {
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True;MultipleActiveResultSets=True";
-        public virtual DbSet<Milk> Milks { get; set; }
-        public virtual DbSet<Cheese> Cheeses { get; set; }
-        public virtual DbSet<Buyer> Buyers { get; set; }
+        public DbSet<Milk> Milks { get; set; }
+        public DbSet<Cheese> Cheeses { get; set; }
+        public DbSet<Buyer> Buyers { get; set; }
+
+        public CheeseContext(DbContextOptions<CheeseContext> options) : base(options)
+        {
+           
+        }
 
         public CheeseContext()
         {
