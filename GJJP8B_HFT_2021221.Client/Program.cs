@@ -23,7 +23,7 @@ namespace GJJP8B_HFT_2021221.Client
 
             foreach (var item in cd.Milks)
             {
-                Console.WriteLine($"{item.Id} - {item.Name}.");
+                Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
             }
 
             foreach (var item in cd.Cheeses)
