@@ -37,19 +37,16 @@ namespace GJJP8B_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Milk>().HasData(new Milk { Id = 1, Name = "CowMilk", Price = 350 },
-            new Milk() { Id = 2, Name = "GoatMilk", Price = 500 }
-            );
+            Milk m1 = new Milk { Id = 1, Name = "CowMilk", Price = 250 };
+            Milk m2 = new Milk { Id = 2, Name = "GoatMilk", Price = 550 };
 
-            modelBuilder.Entity<Cheese>().HasData(new Cheese() { Id = 1, Name = "Cheddar", Price = 1500 },
-            new Cheese() { Id = 2, Name = "GoatCheese", Price = 3500 },
-            new Cheese() { Id = 3, Name = "Maci", Price = 850 }
-            );
+            Cheese c1 = new Cheese { Id = 1, Name = "Cheddar", Price = 1500 };
+            Cheese c2 = new Cheese{ Id = 2, Name = "GoatCheese", Price = 3500 };
+            Cheese c3 = new Cheese{ Id = 3, Name = "Maci", Price = 850 };
 
-            modelBuilder.Entity<Buyer>().HasData(new Buyer() { Id = 1, Name = "Test Ferenc", Money = 5500 },
-            new Buyer() { Id = 2, Name = "Teás K. Anna", Money = 9800 },
-            new Buyer() { Id = 3, Name = "Generic Gery", Money = 6500 }
-            );
+            Buyer b1 = new Buyer { Id = 1, Name = "Test Ferenc", Money = 5500 };
+            Buyer b2 = new Buyer { Id = 2, Name = "Teás K. Anna", Money = 9800 };
+            Buyer b3 = new Buyer() { Id = 3, Name = "Generic Gery", Money = 6500 };
         }
     }
 }
