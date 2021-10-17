@@ -28,19 +28,21 @@ namespace GJJP8B_HFT_2021221.Client
                 Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
             }
 
-            Console.WriteLine("### Cheeses ###");
+            Console.WriteLine("#### Cheeses ####");
 
             foreach (var item in cd.Cheeses)
             {
                 Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
             }
 
-            Console.WriteLine("### Buyers ###");
+            Console.WriteLine("#### Buyers ####");
 
             foreach (var item in cd.Buyers)
             {
                 Console.WriteLine($"{item.Id} - {item.Name}, with {item.Money} money.");
             }
+
+            Console.WriteLine("Done! Exiting!");
         }
     }
 }
