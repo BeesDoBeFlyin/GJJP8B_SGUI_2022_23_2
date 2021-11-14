@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GJJP8B_HFT_2021221.Repository
 {
-    interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         T ReturnOne(int id);
 
