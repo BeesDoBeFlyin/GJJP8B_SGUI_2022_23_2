@@ -12,6 +12,6 @@ namespace GJJP8B_HFT_2021221.Logic
         int MilkCount { get; }
         List<Milk> GetAll();
         void AddMilk(Milk mk);
-        Milk GetMilkById(int id);
+        Milk GetMilkByIndex(int index);
     }
 }
