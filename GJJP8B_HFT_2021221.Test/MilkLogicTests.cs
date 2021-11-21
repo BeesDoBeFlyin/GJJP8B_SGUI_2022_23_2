@@ -51,14 +51,6 @@ namespace GJJP8B_HFT_2021221.Test
         {
             Assert.That(() => ILogic.ChangeMilkName(id, input), Throws.TypeOf<Exception>());
         }
-
-        [TestCase(1, "Test Milk #007")]
-        [TestCase(2, "Test Milk #007")]
-        [TestCase(3, "Test Milk #007")]
-        public void ChangeMilkNameTestForSameName(int id, string input)
-        {
-            Assert.That(() => ILogic.ChangeMilkName(id, input), Throws.TypeOf<Exception>());
-        }
         
     }
 }

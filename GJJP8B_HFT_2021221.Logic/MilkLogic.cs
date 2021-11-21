@@ -43,14 +43,6 @@ namespace GJJP8B_HFT_2021221.Logic
 
             foreach (var item in this.Milks)
             {
-                if (item.Name == newName)
-                {
-                    throw new Exception("New name can't be the same as an already existing one!");
-                }
-            }
-
-            foreach (var item in this.Milks)
-            {
                 if (item.Id == id)
                     item.Name = newName;
             }
