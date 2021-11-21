@@ -8,7 +8,7 @@ namespace GJJP8B_HFT_2021221.Test
     [TestFixture]
     public class MilkLogicTests
     {
-        private IMilkLogic ILogic { get; set; }
+        private MilkLogic ILogic { get; set; }
 
         [OneTimeSetUp]
         public void SetUp()
