@@ -13,6 +13,5 @@ namespace GJJP8B_HFT_2021221.Logic
         List<Cheese> GetAll();
         void AddCheese(Cheese ch);
         Cheese GetCheeseByIndex(int index);
-        void AddMilkToCheese(Milk milk, int cheeseIndex);
     }
 }
