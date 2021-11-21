@@ -18,13 +18,15 @@ namespace GJJP8B_HFT_2021221.Test
             this.ILogic.AddCheese(new Cheese()
             {
                 Name = "Test Cheese #0",
-                Price = 2500
+                Price = 2500,
+                MilkId = 1
             });
             
             this.ILogic.AddCheese(new Cheese()
             {
                 Name = "Test Cheese #1",
-                Price = 1950
+                Price = 1950,
+                MilkId = 2
             });
         }
 
@@ -33,15 +35,18 @@ namespace GJJP8B_HFT_2021221.Test
         {
             string newName = "Test Cheese #5500";
             int newPrice = 5500;
+            int milkid = 1;
 
             ILogic.AddCheese(new Cheese()
             {
                 Name = newName,
-                Price = newPrice
+                Price = newPrice,
+                MilkId = milkid
             });
 
             Assert.That(ILogic.GetAll()[ILogic.CheeseCount - 1].Name, Is.EqualTo(newName));
             Assert.That(ILogic.GetAll()[ILogic.CheeseCount - 1].Price, Is.EqualTo(newPrice));
+            Assert.That(ILogic.GetAll()[ILogic.CheeseCount - 1].MilkId, Is.EqualTo(milkid));
         }
 
         [TestCase(1, "")]
