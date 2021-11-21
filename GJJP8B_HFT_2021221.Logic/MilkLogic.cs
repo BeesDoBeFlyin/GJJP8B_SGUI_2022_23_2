@@ -41,6 +41,9 @@ namespace GJJP8B_HFT_2021221.Logic
             if (newName == "" || newName == null)
                 throw new Exception("New name can't be empty!");
 
+            if (newName.Length > 80)
+                throw new Exception("New name is too long! (Max 80 characters)");
+
             foreach (var item in this.Milks)
             {
                 if (item.Name == newName)

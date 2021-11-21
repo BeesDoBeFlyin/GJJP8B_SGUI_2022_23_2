@@ -62,5 +62,11 @@ namespace GJJP8B_HFT_2021221.Test
         {
             Assert.That(() => ILogic.ChangeCheeseName(id, input), Throws.TypeOf<Exception>());
         }
+
+        [TestCase(1, "HHObwwS8Zr21tnxwEG115tQnFrrwQ1J13v050ZAmpREoCr64hBHJkooRPx0TVb9E8DUTwVIkrAqGMR0p9")]
+        public void ChangeCheeseNameTestForCharacterLength(int id, string input)
+        {
+            Assert.That(() => ILogic.ChangeCheeseName(id, input), Throws.TypeOf<Exception>());
+        }
     }
 }
