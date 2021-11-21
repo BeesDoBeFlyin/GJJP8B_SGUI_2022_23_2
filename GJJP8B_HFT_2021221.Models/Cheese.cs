@@ -15,6 +15,7 @@ namespace GJJP8B_HFT_2021221.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [MaxLength(80)]
         public string Name { get; set; }
         public float Price { get; set; }
         [ForeignKey("madeOf")]
