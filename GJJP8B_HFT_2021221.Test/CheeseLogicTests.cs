@@ -31,7 +31,7 @@ namespace GJJP8B_HFT_2021221.Test
         [Test]
         public void AddCheeseTest()
         {
-            string newName = "Test Milk #5500";
+            string newName = "Test Cheese #5500";
             int newPrice = 5500;
 
             ILogic.AddCheese(new Cheese()

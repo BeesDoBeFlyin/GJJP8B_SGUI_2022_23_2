@@ -38,5 +38,17 @@ namespace GJJP8B_HFT_2021221.Logic
         {
             return this.Buyers[index];
         }
+
+        public void ChangeBuyerName(int id, string newName)
+        {
+            if (newName == "" || newName == null)
+                throw new Exception("New name can't be empty!");
+
+            foreach (var item in this.Buyers)
+            {
+                if (item.Id == id)
+                    item.Name = newName;
+            }
+        }
     }
 }

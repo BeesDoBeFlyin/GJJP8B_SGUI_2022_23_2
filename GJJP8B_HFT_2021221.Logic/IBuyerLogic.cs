@@ -13,5 +13,6 @@ namespace GJJP8B_HFT_2021221.Logic
         List<Buyer> GetAll();
         void AddBuyer(Buyer buy);
         Buyer GetBuyerByIndex(int index);
+        void ChangeBuyerName(int id, string newName);
     }
 }
