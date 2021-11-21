@@ -13,5 +13,6 @@ namespace GJJP8B_HFT_2021221.Logic
         List<Milk> GetAll();
         void AddMilk(Milk mk);
         Milk GetMilkByIndex(int index);
+        void ChangeMilkName(int id, string newName);
     }
 }

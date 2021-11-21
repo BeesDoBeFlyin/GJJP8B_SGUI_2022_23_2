@@ -1,6 +1,7 @@
 ﻿using GJJP8B_HFT_2021221.Logic;
 using GJJP8B_HFT_2021221.Models;
 using NUnit.Framework;
+using System;
 
 namespace GJJP8B_HFT_2021221.Test
 {
@@ -28,7 +29,7 @@ namespace GJJP8B_HFT_2021221.Test
         }
 
         [Test]
-        public void AddMilk()
+        public void AddMilkTest()
         {
             string newName = "Test Milk #5500";
             int newPrice = 5500;
@@ -43,6 +44,21 @@ namespace GJJP8B_HFT_2021221.Test
             Assert.That(ILogic.GetAll()[ILogic.MilkCount - 1].Price, Is.EqualTo(newPrice));
         }
 
+        [TestCase(1, "")]
+        [TestCase(2, null)]
+        [TestCase(3, "")]
+        public void ChangeMilkNameTestForNullAndEmptyName(int id, string input)
+        {
+            Assert.That(() => ILogic.ChangeMilkName(id, input), Throws.TypeOf<Exception>());
+        }
+
+        [TestCase(1, "Test Milk #007")]
+        [TestCase(2, "Test Milk #007")]
+        [TestCase(3, "Test Milk #007")]
+        public void ChangeMilkNameTestForSameName(int id, string input)
+        {
+            Assert.That(() => ILogic.ChangeMilkName(id, input), Throws.TypeOf<Exception>());
+        }
         
     }
 }
