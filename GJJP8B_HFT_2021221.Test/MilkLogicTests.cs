@@ -42,5 +42,7 @@ namespace GJJP8B_HFT_2021221.Test
             Assert.That(ILogic.GetAll()[ILogic.MilkCount - 1].Name, Is.EqualTo(newName));
             Assert.That(ILogic.GetAll()[ILogic.MilkCount - 1].Price, Is.EqualTo(newPrice));
         }
+
+        
     }
 }
