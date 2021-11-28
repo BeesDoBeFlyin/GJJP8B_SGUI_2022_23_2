@@ -14,7 +14,7 @@ namespace GJJP8B_HFT_2021221.Logic
         void AddCheese(Cheese ch);
         Cheese GetCheeseByIndex(int index);
         void ChangeCheeseName(int id, string newName);
-        void GetCheeseById(int id);
+        Cheese GetCheeseById(int id);
         void DeleteCheeseById(int id);
     }
 }
