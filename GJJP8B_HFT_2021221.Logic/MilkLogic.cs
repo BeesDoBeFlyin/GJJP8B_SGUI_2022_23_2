@@ -21,6 +21,18 @@ namespace GJJP8B_HFT_2021221.Logic
             this.Milks = new List<Milk>();
         }
 
+        public Milk GetMilkById(int id)
+        {
+            foreach (var item in Milks)
+            {
+                if (item.Id == id)
+                    return item;
+                else
+                    throw new Exception("No item with given id found!");
+            }
+            return null;
+        }
+
         public void AddMilk(Milk mk)
         {
             this.Milks.Add(mk);
@@ -55,6 +67,17 @@ namespace GJJP8B_HFT_2021221.Logic
                 if (item.Id == id)
                     item.Name = newName;
             }
+        }
+
+        public void DeleteMilkById(int id)
+        {
+            foreach (var item in Milks)
+            {
+                if (item.Id == id)
+                    throw new NotImplementedException();
+            }
+
+            throw new Exception("There is no element with the given id!");
         }
     }
 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GJJP8B_HFT_2021221.Data\GJJP8B_HFT_2021221.Data.csproj" />
     <ProjectReference Include="..\GJJP8B_HFT_2021221.Logic\GJJP8B_HFT_2021221.Logic.csproj" />
     <ProjectReference Include="..\GJJP8B_HFT_2021221.Models\GJJP8B_HFT_2021221.Models.csproj" />
