@@ -30,7 +30,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
             return cheeseLogic.GetCheeseById(id);
         }
 
-        [HttpPost("{newMilk}")]
+        [HttpPost("{newCheese}")]
         public void Create(Cheese newCheese)
         {
             cheeseLogic.AddCheese(newCheese);
