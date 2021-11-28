@@ -30,7 +30,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
             return milkLogic.GetMilkById(id);
         }
 
-        [HttpPost("{caster}")]
+        [HttpPost("{newMilk}")]
         public void Create(Milk newMilk)
         {
             milkLogic.AddMilk(newMilk);
