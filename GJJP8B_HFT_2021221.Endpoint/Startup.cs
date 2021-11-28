@@ -23,7 +23,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
             services.AddTransient<IMilkRepository, MilkRepository>();
             services.AddTransient<ICheeseRepository, CheeseRepository>();
             services.AddTransient<IBuyerRepository, BuyerRepository>();
-            services.AddSingleton<CheeseContext>();
+            services.AddDbContext<CheeseContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
