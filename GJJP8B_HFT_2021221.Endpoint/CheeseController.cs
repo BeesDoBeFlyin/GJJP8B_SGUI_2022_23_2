@@ -19,30 +19,36 @@ namespace GJJP8B_HFT_2021221.Endpoint
             this.cheeseLogic = cheeseLogic;
         }
 
+        [Route("ReadAll")]
         [HttpGet]
         public IEnumerable<Cheese> ReadAll()
         {
             return cheeseLogic.GetAll();
         }
-        [HttpGet("{id}")]
+
+        [Route("Read/{id}")]
+        [HttpGet]
         public Cheese Read(int id)
         {
             return cheeseLogic.GetCheeseById(id);
         }
 
-        [HttpPost("{newCheese}")]
+        [Route("Create/{newCheese}")]
+        [HttpPost]
         public void Create(Cheese newCheese)
         {
             cheeseLogic.AddCheese(newCheese);
         }
 
-        [HttpPut("{id,newName}")]
+        [Route("ChangeCheeseName/{id}/{newName}")]
+        [HttpPut]
         public void ChangeCheeseName(int id, string newName)
         {
             cheeseLogic.ChangeCheeseName(id, newName);
         }
 
-        [HttpDelete("{id}")]
+        [Route("Delete/{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
             cheeseLogic.DeleteCheeseById(id);
