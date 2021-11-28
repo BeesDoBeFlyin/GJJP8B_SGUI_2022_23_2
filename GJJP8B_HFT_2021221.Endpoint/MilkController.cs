@@ -19,30 +19,36 @@ namespace GJJP8B_HFT_2021221.Endpoint
             this.milkLogic = milkLogic;
         }
 
+        [Route("ReadAll")]
         [HttpGet]
         public IEnumerable<Milk> ReadAll()
         {
             return milkLogic.GetAll();
         }
-        [HttpGet("{id}")]
+
+        [Route("Read/{id}")]
+        [HttpGet]
         public Milk Read(int id)
         {
             return milkLogic.GetMilkById(id);
         }
 
-        [HttpPost("{newMilk}")]
+        [Route("Create/{newMilk}")]
+        [HttpPost]
         public void Create(Milk newMilk)
         {
             milkLogic.AddMilk(newMilk);
         }
 
-        [HttpPut("{id,newName}")]
+        [Route("ChangeMilkName/{id}/{name}")]
+        [HttpPut]
         public void ChangeMilkName(int id, string newName)
         {
             milkLogic.ChangeMilkName(id, newName);
         }
 
-        [HttpDelete("{id}")]
+        [Route("Delete/{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
             milkLogic.DeleteMilkById(id);
