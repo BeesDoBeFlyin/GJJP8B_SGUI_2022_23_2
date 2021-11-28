@@ -34,7 +34,6 @@ namespace GJJP8B_HFT_2021221.Logic
                 if (item.Id == id)
                     return item;
             }
-            throw new Exception("No item with given id found!");
         }
 
         public void AddCheese(Cheese ch)
