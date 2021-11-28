@@ -16,13 +16,13 @@ namespace GJJP8B_HFT_2021221.Endpoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IMilkLogic, MilkLogic>();
-            services.AddTransient<ICheeseLogic, CheeseLogic>();
-            services.AddTransient<IBuyerLogic, BuyerLogic>();
+            services.AddScoped<IMilkLogic, MilkLogic>();
+            services.AddScoped<ICheeseLogic, CheeseLogic>();
+            services.AddScoped<IBuyerLogic, BuyerLogic>();
 
-            services.AddTransient<IMilkRepository, MilkRepository>();
-            services.AddTransient<ICheeseRepository, CheeseRepository>();
-            services.AddTransient<IBuyerRepository, BuyerRepository>();
+            services.AddScoped<IMilkRepository, MilkRepository>();
+            services.AddScoped<ICheeseRepository, CheeseRepository>();
+            services.AddScoped<IBuyerRepository, BuyerRepository>();
             services.AddDbContext<CheeseContext>();
         }
 
@@ -38,10 +38,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
