@@ -1,4 +1,5 @@
 ﻿using GJJP8B_HFT_2021221.Models;
+using GJJP8B_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 
@@ -7,6 +8,8 @@ namespace GJJP8B_HFT_2021221.Logic
     public class MilkLogic : IMilkLogic
     {
         private List<Milk> Milks { get; set; }
+
+        private IMilkRepository repository;
 
         public int MilkCount
         {
@@ -69,13 +72,7 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public void DeleteMilkById(int id)
         {
-            foreach (var item in Milks)
-            {
-                if (item.Id == id)
-                    throw new NotImplementedException();
-            }
-
-            throw new Exception("There is no element with the given id!");
+            repository.Delete(id);
         }
     }
 }

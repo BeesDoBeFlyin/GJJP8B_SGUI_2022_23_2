@@ -1,4 +1,5 @@
 ﻿using GJJP8B_HFT_2021221.Models;
+using GJJP8B_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace GJJP8B_HFT_2021221.Logic
     {
 
         private List<Buyer> Buyers { get; set; }
+
+        private IBuyerRepository repository;
 
         public BuyerLogic()
         {
@@ -63,13 +66,7 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public void DeleteBuyerById(int id)
         {
-            foreach (var item in Buyers)
-            {
-                if (item.Id == id)
-                    throw new NotImplementedException();
-            }
-
-            throw new Exception("There is no element with the given id!");
+            repository.Delete(id);
         }
     }
 }

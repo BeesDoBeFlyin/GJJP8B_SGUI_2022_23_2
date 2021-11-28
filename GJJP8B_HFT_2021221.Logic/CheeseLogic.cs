@@ -1,4 +1,5 @@
 ﻿using GJJP8B_HFT_2021221.Models;
+using GJJP8B_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace GJJP8B_HFT_2021221.Logic
         }
 
         private List<Cheese> Cheeses { get; set; }
+
+        private ICheeseRepository repository;
 
         public CheeseLogic()
         {
@@ -72,13 +75,7 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public void DeleteCheeseById(int id)
         {
-            foreach (var item in Cheeses)
-            {
-                if (item.Id == id)
-                    throw new NotImplementedException();
-            }
-
-            throw new Exception("There is no element with the given id!");
+            repository.Delete(id);
         }
     }
 }
