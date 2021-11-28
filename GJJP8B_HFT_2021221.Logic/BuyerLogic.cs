@@ -24,6 +24,16 @@ namespace GJJP8B_HFT_2021221.Logic
             }
         }
 
+        public Buyer GetBuyerById(int id)
+        {
+            foreach (var item in Buyers)
+            {
+                if (item.Id == id)
+                    return item;
+            }
+            throw new Exception("No item with given id found!");
+        }
+
         public void AddBuyer(Buyer buy)
         {
             this.Buyers.Add(buy);
@@ -49,6 +59,17 @@ namespace GJJP8B_HFT_2021221.Logic
                 if (item.Id == id)
                     item.Name = newName;
             }
+        }
+
+        public void DeleteBuyerById(int id)
+        {
+            foreach (var item in Buyers)
+            {
+                if (item.Id == id)
+                    throw new NotImplementedException();
+            }
+
+            throw new Exception("There is no element with the given id!");
         }
     }
 }
