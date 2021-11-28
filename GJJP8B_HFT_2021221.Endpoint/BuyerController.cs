@@ -24,25 +24,30 @@ namespace GJJP8B_HFT_2021221.Endpoint
         {
             return buyerLogic.GetAll();
         }
-        [HttpGet("{id}")]
+
+        [Route("Read/{id}")]
+        [HttpGet]
         public Buyer Read(int id)
         {
             return buyerLogic.GetBuyerById(id);
         }
 
-        [HttpPost("{newBuyer}")]
+        [Route("Create/{newBuyer}")]
+        [HttpPost]
         public void Create(Buyer newBuyer)
         {
             buyerLogic.AddBuyer(newBuyer);
         }
 
-        [HttpPut("{id,newName}")]
+        [Route("ChangeBuyerName/{id}/{newName}")]
+        [HttpPut]
         public void ChangeBuyerName(int id, string newName)
         {
             buyerLogic.ChangeBuyerName(id, newName);
         }
 
-        [HttpDelete("{id}")]
+        [Route("Delete/{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
             buyerLogic.DeleteBuyerById(id);
