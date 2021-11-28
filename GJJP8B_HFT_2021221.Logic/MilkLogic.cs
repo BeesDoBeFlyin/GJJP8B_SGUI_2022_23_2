@@ -27,10 +27,8 @@ namespace GJJP8B_HFT_2021221.Logic
             {
                 if (item.Id == id)
                     return item;
-                else
-                    throw new Exception("No item with given id found!");
             }
-            return null;
+            throw new Exception("No item with given id found!");
         }
 
         public void AddMilk(Milk mk)

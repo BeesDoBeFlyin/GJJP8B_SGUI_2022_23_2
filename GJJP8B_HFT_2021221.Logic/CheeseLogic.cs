@@ -24,6 +24,16 @@ namespace GJJP8B_HFT_2021221.Logic
             this.Cheeses = new List<Cheese>();
         }
 
+        public Cheese GetCheeseById(int id)
+        {
+            foreach (var item in Cheeses)
+            {
+                if (item.Id == id)
+                    return item;
+            }
+            throw new Exception("No item with given id found!");
+        }
+
         public void AddCheese(Cheese ch)
         {
             this.Cheeses.Add(ch);
@@ -58,6 +68,17 @@ namespace GJJP8B_HFT_2021221.Logic
                 if (item.Id == id)
                     item.Name = newName;
             }
+        }
+
+        public void DeleteCheeseById(int id)
+        {
+            foreach (var item in Cheeses)
+            {
+                if (item.Id == id)
+                    throw new NotImplementedException();
+            }
+
+            throw new Exception("There is no element with the given id!");
         }
     }
 }
