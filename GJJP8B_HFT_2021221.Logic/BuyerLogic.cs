@@ -29,11 +29,7 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public Buyer GetBuyerById(int id)
         {
-            foreach (var item in Buyers)
-            {
-                if (item.Id == id)
-                    return item;
-            }
+            return repository.ReturnOne(id);
         }
 
         public void AddBuyer(Buyer buy)

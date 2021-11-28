@@ -26,11 +26,7 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public Milk GetMilkById(int id)
         {
-            foreach (var item in Milks)
-            {
-                if (item.Id == id)
-                    return item;
-            }
+           return repository.ReturnOne(id);
         }
 
         public void AddMilk(Milk mk)

@@ -29,11 +29,7 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public Cheese GetCheeseById(int id)
         {
-            foreach (var item in Cheeses)
-            {
-                if (item.Id == id)
-                    return item;
-            }
+            return repository.ReturnOne(id);
         }
 
         public void AddCheese(Cheese ch)
