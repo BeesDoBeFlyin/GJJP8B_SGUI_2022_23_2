@@ -2,26 +2,18 @@
 using GJJP8B_HFT_2021221.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GJJP8B_HFT_2021221.Logic
 {
     public class MilkLogic : IMilkLogic
     {
-        private List<Milk> Milks { get; set; }
-
         private IMilkRepository repository;
 
-        public int MilkCount
-        {
-            get
-            {
-                return this.Milks.Count;
-            }
-        }
 
-        public MilkLogic()
+        public MilkLogic(IMilkRepository milkRepository)
         {
-            this.Milks = new List<Milk>();
+            this.repository=milkRepository;
         }
 
         public Milk GetMilkById(int id)
@@ -31,43 +23,27 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public void AddMilk(Milk mk)
         {
-            this.Milks.Add(mk);
+            repository.Insert(mk);
         }
 
-        public Milk GetMilkByIndex(int index)
+        public IQueryable<Milk> GetAll()
         {
-            return this.Milks[index];
-        }
-
-        public List<Milk> GetAll()
-        {
-            return this.Milks;
+            return repository.ReturnAll();
         }
 
         public void ChangeMilkName(int id, string newName)
         {
-            if (newName == "" || newName == null)
-                throw new Exception("New name can't be empty!");
-
-            if (newName.Length > 80)
-                throw new Exception("New name is too long! (Max 80 characters)");
-
-            foreach (var item in this.Milks)
-            {
-                if (item.Name == newName)
-                    throw new Exception("New name can't be the name of an already existing Milk!");
-            }
-
-            foreach (var item in this.Milks)
-            {
-                if (item.Id == id)
-                    item.Name = newName;
-            }
+            repository.ChangeName(id, newName);
         }
 
         public void DeleteMilkById(int id)
         {
             repository.Delete(id);
+        }
+
+        public void ChangePrice(int id, int newPrice)
+        {
+            repository.ChangePrice(id, newPrice);
         }
     }
 }

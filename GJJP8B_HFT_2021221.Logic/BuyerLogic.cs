@@ -10,21 +10,11 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public class BuyerLogic : IBuyerLogic
     {
-
-        private List<Buyer> Buyers { get; set; }
-
         private IBuyerRepository repository;
 
-        public BuyerLogic()
+        public BuyerLogic(IBuyerRepository buyerRepository)
         {
-            this.Buyers = new List<Buyer>();
-        }
-        public int BuyerCount
-        {
-            get
-            {
-                return this.Buyers.Count;
-            }
+            repository = buyerRepository;
         }
 
         public Buyer GetBuyerById(int id)
@@ -34,34 +24,32 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public void AddBuyer(Buyer buy)
         {
-            this.Buyers.Add(buy);
+            repository.Insert(buy);
         }
 
-        public List<Buyer> GetAll()
+        public IQueryable<Buyer> GetAll()
         {
-            return this.Buyers;
-        }
-
-        public Buyer GetBuyerByIndex(int index)
-        {
-            return this.Buyers[index];
+            return repository.ReturnAll();
         }
 
         public void ChangeBuyerName(int id, string newName)
         {
-            if (newName == "" || newName == null)
-                throw new Exception("New name can't be empty!");
-
-            foreach (var item in this.Buyers)
-            {
-                if (item.Id == id)
-                    item.Name = newName;
-            }
+            repository.ChangeName(id, newName);
         }
 
         public void DeleteBuyerById(int id)
         {
             repository.Delete(id);
+        }
+
+        public void ChangeMoney(int id, int newMoney)
+        {
+            repository.ChangeMoney(id, newMoney);
+        }
+
+        public void ChangePreferredCheese(int id, int newCheeseId)
+        {
+            repository.ChangePreferredCheese(id, newCheeseId);
         }
     }
 }

@@ -1,11 +1,6 @@
+using GJJP8B_HFT_2021221.Data;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GJJP8B_HFT_2021221.Endpoint
 {
@@ -13,6 +8,8 @@ namespace GJJP8B_HFT_2021221.Endpoint
     {
         public static void Main(string[] args)
         {
+            CheeseContext cc = new CheeseContext();
+
             CreateHostBuilder(args).Build().Run();
         }
 

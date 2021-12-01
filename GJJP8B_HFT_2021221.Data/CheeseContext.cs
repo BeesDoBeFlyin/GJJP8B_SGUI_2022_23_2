@@ -1,19 +1,15 @@
 ﻿using GJJP8B_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GJJP8B_HFT_2021221.Data
 {
     public class CheeseContext : DbContext
     {
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True;MultipleActiveResultSets=True";
-        public DbSet<Milk> Milks { get; set; }
-        public DbSet<Cheese> Cheeses { get; set; }
-        public DbSet<Buyer> Buyers { get; set; }
+        public DbSet<Milk> MilkDB { get; set; }
+        public DbSet<Cheese> CheeseDB { get; set; }
+        public DbSet<Buyer> BuyerDB { get; set; }
         public CheeseContext()
         {
             this.Database.EnsureCreated();
@@ -21,12 +17,12 @@ namespace GJJP8B_HFT_2021221.Data
 
         public CheeseContext(DbContextOptions<CheeseContext> options) : base(options)
         {
-           
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            if (!optionsBuilder.IsConfigured && optionsBuilder != null)
             {
                 optionsBuilder
                     .UseLazyLoadingProxies()
@@ -36,18 +32,31 @@ namespace GJJP8B_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Milk m1 = new() { Id = 1, Name = "CowMilk", Price = 250 };
-            Milk m2 = new() { Id = 2, Name = "GoatMilk", Price = 550 };
+            //modelBuilder.Entity<Cheese>()
+            //    .HasOne<Milk>(c => c.Milk)
+            //    .WithMany(m => m.Cheeses)
+            //    .HasForeignKey(c => c.MilkId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull);
+            //modelBuilder.Entity<Buyer>()
+            //    .HasOne<Cheese>(b => b.Cheese)
+            //    .WithMany(c => c.Buyers)
+            //    .HasForeignKey(b => b.CheeseId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull);
+
+            Milk m1 = new() { Id = 1, Name = "CowMilk", Price = 250, Cheeses = new List<Cheese>() };
+            Milk m2 = new() { Id = 2, Name = "GoatMilk", Price = 550, Cheeses = new List<Cheese>() };
+
+            Cheese c1 = new() { Id = 1, Name = "Cheddar", Price = 1500, MilkId = 1, Buyers = new List<Buyer>() };
+            Cheese c2 = new() { Id = 2, Name = "GoatCheese", Price = 3500, MilkId = 2, Buyers = new List<Buyer>() };
+            Cheese c3 = new() { Id = 3, Name = "Maci", Price = 850, MilkId = 1, Buyers = new List<Buyer>() };
+
+            Buyer b1 = new() { Id = 1, Name = "Test Ferenc", Money = 5500, CheeseId = 1 };
+            Buyer b2 = new() { Id = 2, Name = "Teás K. Anna", Money = 9800, CheeseId = 2 };
+            Buyer b3 = new() { Id = 3, Name = "Sigh Kyle", Money = 6500, CheeseId = 3 };
+
+
             modelBuilder.Entity<Milk>().HasData(m1, m2);
-
-            Cheese c1 = new() { Id = 1, Name = "Cheddar", Price = 1500, MilkId = 1};
-            Cheese c2 = new() { Id = 2, Name = "GoatCheese", Price = 3500, MilkId = 2};
-            Cheese c3 = new() { Id = 3, Name = "Maci", Price = 850, MilkId = 1};
             modelBuilder.Entity<Cheese>().HasData(c1, c2, c3);
-
-            Buyer b1 = new() { Id = 1, Name = "Test Ferenc", Money = 5500, CheeseId = 1};
-            Buyer b2 = new() { Id = 2, Name = "Teás K. Anna", Money = 9800, CheeseId = 1};
-            Buyer b3 = new() { Id = 3, Name = "Generic Gery", Money = 6500, CheeseId = 3};
             modelBuilder.Entity<Buyer>().HasData(b1, b2, b3);
         }
     }

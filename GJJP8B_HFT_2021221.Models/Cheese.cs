@@ -5,21 +5,25 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace GJJP8B_HFT_2021221.Models
 {
-    [Table("cheeses")]
+    //[Table("Cheese")]
     public class Cheese
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [MaxLength(80)]
+        [MaxLength(35)]
         public string Name { get; set; }
         public float Price { get; set; }
-        [ForeignKey("madeOf")]
+        //[ForeignKey(nameof(Milk))]
         public int MilkId { get; set; }
-
+        [JsonIgnore]
+        public virtual Milk Milk { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Buyer> Buyers { get; set; }
     }
 }

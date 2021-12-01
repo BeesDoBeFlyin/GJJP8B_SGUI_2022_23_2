@@ -9,12 +9,12 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public interface IBuyerLogic
     {
-        int BuyerCount { get; }
-        List<Buyer> GetAll();
+        IQueryable<Buyer> GetAll();
         void AddBuyer(Buyer buy);
-        Buyer GetBuyerByIndex(int index);
         void ChangeBuyerName(int id, string newName);
         Buyer GetBuyerById(int id);
         void DeleteBuyerById(int id);
+        void ChangeMoney(int id, int newMoney);
+        void ChangePreferredCheese(int id, int newCheeseId);
     }
 }

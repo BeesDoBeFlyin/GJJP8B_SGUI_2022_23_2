@@ -12,37 +12,45 @@ namespace GJJP8B_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            // INITIALISATION
-            CheeseContext cd = new CheeseContext();
+            //CheeseContext cheeseContext = new();
+            //foreach (var item in cheeseContext.BuyerDB)
+            //{
+            //    Console.WriteLine(item.Name);
+            //}
 
-            cd.SaveChanges();
+            Console.ReadLine();
 
-            Console.WriteLine("Test data created! Listing them now!");
+            //// INITIALISATION
+            //CheeseContext cd = new CheeseContext();
 
-            // WRINTING OUT TEST DATA
+            //cd.SaveChanges();
 
-            Console.WriteLine("###### Milks ######");
+            //Console.WriteLine("Test data created! Listing them now!");
 
-            foreach (var item in cd.Milks)
-            {
-                Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
-            }
+            //// WRINTING OUT TEST DATA
 
-            Console.WriteLine("#### Cheeses ####");
+            //Console.WriteLine("###### Milks ######");
 
-            foreach (var item in cd.Cheeses)
-            {
-                Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
-            }
+            //foreach (var item in cd.Milks)
+            //{
+            //    Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
+            //}
 
-            Console.WriteLine("#### Buyers ####");
+            //Console.WriteLine("#### Cheeses ####");
 
-            foreach (var item in cd.Buyers)
-            {
-                Console.WriteLine($"{item.Id} - {item.Name}, with {item.Money} money.");
-            }
+            //foreach (var item in cd.Cheeses)
+            //{
+            //    Console.WriteLine($"{item.Id} - {item.Name}, price {item.Price}.");
+            //}
 
-            Console.WriteLine("Done! Exiting!");
+            //Console.WriteLine("#### Buyers ####");
+
+            //foreach (var item in cd.Buyers)
+            //{
+            //    Console.WriteLine($"{item.Id} - {item.Name}, with {item.Money} money.");
+            //}
+
+            //Console.WriteLine("Done! Exiting!");
             Console.ReadKey();
         }
     }

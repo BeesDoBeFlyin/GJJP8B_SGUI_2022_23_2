@@ -9,12 +9,12 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public interface ICheeseLogic
     {
-        int CheeseCount { get; }
-        List<Cheese> GetAll();
+        IQueryable<Cheese> GetAll();
         void AddCheese(Cheese ch);
-        Cheese GetCheeseByIndex(int index);
         void ChangeCheeseName(int id, string newName);
         Cheese GetCheeseById(int id);
         void DeleteCheeseById(int id);
+        void ChangePrice(int id, int newPrice);
+        void ChangeMilk(int id, int newMilkId);
     }
 }

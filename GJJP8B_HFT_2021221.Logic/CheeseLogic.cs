@@ -9,22 +9,13 @@ using System.Threading.Tasks;
 namespace GJJP8B_HFT_2021221.Logic
 {
     public class CheeseLogic : ICheeseLogic
-    {
-        public int CheeseCount
-        {
-            get
-            {
-                return this.Cheeses.Count;
-            }
-        }
-
-        private List<Cheese> Cheeses { get; set; }
+    { 
 
         private ICheeseRepository repository;
 
-        public CheeseLogic()
+        public CheeseLogic(ICheeseRepository cheeseRepository)
         {
-            this.Cheeses = new List<Cheese>();
+            repository = cheeseRepository;
         }
 
         public Cheese GetCheeseById(int id)
@@ -34,43 +25,32 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public void AddCheese(Cheese ch)
         {
-            this.Cheeses.Add(ch);
+            repository.Insert(ch);
         }
 
-        public List<Cheese> GetAll()
+        public IQueryable<Cheese> GetAll()
         {
-            return this.Cheeses;
-        }
-
-        public Cheese GetCheeseByIndex(int index)
-        {
-            return this.Cheeses[index];
+            return repository.ReturnAll();
         }
 
         public void ChangeCheeseName(int id, string newName)
         {
-            if (newName == "" || newName == null)
-                throw new Exception("New name can't be empty!");
-
-            if (newName.Length > 80)
-                throw new Exception("New name is too long! (Max 80 characters)");
-
-            foreach (var item in this.Cheeses)
-            {
-                if (item.Name == newName)
-                    throw new Exception("New name can't be the name of an already existing Cheese!");
-            }
-
-            foreach (var item in this.Cheeses)
-            {
-                if (item.Id == id)
-                    item.Name = newName;
-            }
+            repository.ChangeName(id, newName);
         }
 
         public void DeleteCheeseById(int id)
         {
             repository.Delete(id);
+        }
+
+        public void ChangePrice(int id, int newPrice)
+        {
+            repository.ChangePrice(id, newPrice);
+        }
+
+        public void ChangeMilk(int id, int newMilkId)
+        {
+            repository.ChangeMilk(id, newMilkId);
         }
     }
 }

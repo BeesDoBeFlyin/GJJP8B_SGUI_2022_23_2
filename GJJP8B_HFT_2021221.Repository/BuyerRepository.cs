@@ -63,7 +63,7 @@ namespace GJJP8B_HFT_2021221.Repository
 
         public override Buyer ReturnOne(int id)
         {
-            return this.ReturnAll().SingleOrDefault(x => x.Id == id);
+            return this.ReturnAll().FirstOrDefault(x => x.Id == id);
         }
     }
 }

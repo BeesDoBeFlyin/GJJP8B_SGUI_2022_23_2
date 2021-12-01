@@ -9,12 +9,11 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public interface IMilkLogic
     {
-        int MilkCount { get; }
-        List<Milk> GetAll();
+        IQueryable<Milk> GetAll();
         void AddMilk(Milk mk);
-        Milk GetMilkByIndex(int index);
         Milk GetMilkById(int id);
         void ChangeMilkName(int id, string newName);
         void DeleteMilkById(int id);
+        void ChangePrice(int id, int newPrice);
     }
 }
