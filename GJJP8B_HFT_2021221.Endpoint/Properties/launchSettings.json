@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "IIS Express": {"launchUrl": "Milk/Read/0",
+    "IIS Express": {"launchUrl": "Cheese/ReadAll",
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
