@@ -76,6 +76,12 @@ namespace GJJP8B_HFT_2021221.Test
             Assert.DoesNotThrow(() => ILogic.ChangePrice(1, 500f));
         }
 
+        [Test]
+        public void MilksUnderPriceTest()
+        {
+            IQueryable<Milk> test = ILogic.MilksUnderPrice(600f);
 
+            Assert.That(test.Count() == 2);
+        }
     }
 }

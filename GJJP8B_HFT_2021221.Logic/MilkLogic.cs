@@ -56,7 +56,7 @@ namespace GJJP8B_HFT_2021221.Logic
             List<Milk> milks = new List<Milk>();
             foreach (var item in repository.ReturnAll())
             {
-                if (item.Price > price)
+                if (item.Price < price)
                     milks.Add(item);
             }
 
