@@ -68,6 +68,20 @@ namespace GJJP8B_HFT_2021221.Endpoint
             return cheeseLogic.CheesesUnderPrice(price);
         }
 
+        [Route("AtPrice/{price}")]
+        [HttpGet]
+        public IQueryable<Cheese> GetCheesesAtPrce(float price)
+        {
+            return cheeseLogic.CheesesAtPrice(price);
+        }
+
+        [Route("AbovePrice/{price}")]
+        [HttpGet]
+        public IQueryable<Cheese> GetCheesesAbovePrce(float price)
+        {
+            return cheeseLogic.CheesesAbovePrice(price);
+        }
+
         [Route("MadeOf/{id}")]
         [HttpGet]
         public Milk MadeOf(int id)
