@@ -20,5 +20,6 @@ namespace GJJP8B_HFT_2021221.Logic
         IQueryable<Cheese> CheesesUnderPrice(float price);
         Milk MadeOf(int id);
         IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk);
+        IQueryable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price);
     }
 }

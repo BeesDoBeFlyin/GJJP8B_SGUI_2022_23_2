@@ -82,5 +82,12 @@ namespace GJJP8B_HFT_2021221.Logic
 
             return cheeses.AsQueryable<Cheese>();
         }
+
+        public IQueryable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
+        {
+            IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Milk.Price < price);
+
+            return cheeses;
+        }
     }
 }
