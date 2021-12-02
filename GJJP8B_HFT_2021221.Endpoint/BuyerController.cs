@@ -54,6 +54,12 @@ namespace GJJP8B_HFT_2021221.Endpoint
             buyerLogic.DeleteBuyerById(id);
         }
 
+        [Route("ChangeMoney/{id}/{price}")]
+        public void ChangeMoney(int id, float price)//for the sake of consistency, the new money is called price as well
+        {
+            buyerLogic.ChangeMoney(id, price);
+        }
+
         [Route("CanAfford/{price}")]
         [HttpGet]
         public bool CanAfford(int id, float price)

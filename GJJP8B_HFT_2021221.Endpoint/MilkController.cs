@@ -54,7 +54,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
             milkLogic.DeleteMilkById(id);
         }
 
-        [Route("ChangePrice/{price}")]
+        [Route("ChangePrice/{id}/{price}")]
         [HttpPut]
         public void ChangePrice(int id, float price)
         {
