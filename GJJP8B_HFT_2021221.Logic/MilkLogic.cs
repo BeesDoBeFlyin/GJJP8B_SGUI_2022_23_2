@@ -53,14 +53,23 @@ namespace GJJP8B_HFT_2021221.Logic
 
         public IQueryable<Milk> MilksUnderPrice(float price)
         {
-            List<Milk> milks = new List<Milk>();
-            foreach (var item in repository.ReturnAll())
-            {
-                if (item.Price < price)
-                    milks.Add(item);
-            }
+            IQueryable<Milk> milks = repository.ReturnAll().Where(x => x.Price < price);
 
-            return milks.AsQueryable<Milk>();
+            return milks;
+        }
+
+        public IQueryable<Milk> MilksAtPricePoint(float price)
+        {
+            IQueryable<Milk> milks = repository.ReturnAll().Where(x => x.Price == price);
+
+            return milks;
+        }
+        
+        public IQueryable<Milk> MilksAbovePrice(float price)
+        {
+            IQueryable<Milk> milks = repository.ReturnAll().Where(x => x.Price > price);
+
+            return milks;
         }
     }
 }
