@@ -14,6 +14,8 @@ namespace GJJP8B_HFT_2021221.Logic
         Milk GetMilkById(int id);
         void ChangeMilkName(int id, string newName);
         void DeleteMilkById(int id);
-        void ChangePrice(int id, int newPrice);
+        void ChangePrice(int id, float newPrice);
+        float ReturnPrice(int id);
+        IQueryable<Milk> MilksUnderPrice(float price);
     }
 }

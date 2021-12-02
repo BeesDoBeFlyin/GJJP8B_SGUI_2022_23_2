@@ -27,13 +27,14 @@ namespace GJJP8B_HFT_2021221.Repository
             this.Context.SaveChanges();
         }
 
-        public void ChangePrice(int id, int newPrice)
+        public void ChangePrice(int id, float newPrice)
         {
             var milk = this.ReturnOne(id);
             if (milk == null)
             {
                 throw new InvalidOperationException("There is no record with the given id!");
             }
+
             milk.Price = newPrice;
             this.Context.SaveChanges();
         }

@@ -41,9 +41,26 @@ namespace GJJP8B_HFT_2021221.Logic
             repository.Delete(id);
         }
 
-        public void ChangePrice(int id, int newPrice)
+        public void ChangePrice(int id, float newPrice)
         {
             repository.ChangePrice(id, newPrice);
+        }
+
+        public float ReturnPrice(int id)
+        {
+            return repository.ReturnOne(id).Price;
+        }
+
+        public IQueryable<Milk> MilksUnderPrice(float price)
+        {
+            List<Milk> milks = new List<Milk>();
+            foreach (var item in repository.ReturnAll())
+            {
+                if (item.Price > price)
+                    milks.Add(item);
+            }
+
+            return milks.AsQueryable<Milk>();
         }
     }
 }

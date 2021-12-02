@@ -11,6 +11,6 @@ namespace GJJP8B_HFT_2021221.Repository
     {
         void ChangeName(int id, string newName);
 
-        void ChangePrice(int id, int newPrice);
+        void ChangePrice(int id, float newPrice);
     }
 }
