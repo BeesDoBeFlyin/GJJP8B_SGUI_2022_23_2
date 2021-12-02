@@ -8,8 +8,6 @@ namespace GJJP8B_HFT_2021221.Endpoint
     {
         public static void Main(string[] args)
         {
-            CheeseContext cc = new CheeseContext();
-
             CreateHostBuilder(args).Build().Run();
         }
 
