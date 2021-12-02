@@ -66,7 +66,7 @@ namespace GJJP8B_HFT_2021221.Logic
             return cheeses.AsQueryable<Cheese>();
         }
 
-        public IQueryable<Cheese> CheesesAtPricePoint(float price)
+        public IQueryable<Cheese> CheesesAtPrice(float price)
         {
             IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price == price);
 

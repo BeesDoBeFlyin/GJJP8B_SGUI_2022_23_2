@@ -70,7 +70,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
         [Route("AtPrice/{price}")]
         [HttpGet]
-        public IQueryable<Milk> GetMilksAtPrice(float price)
+        public IQueryable<Milk> GetMilksAtPricePoint(float price)
         {
             return milkLogic.MilksAtPricePoint(price);
         }
