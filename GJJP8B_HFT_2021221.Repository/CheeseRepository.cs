@@ -37,7 +37,7 @@ namespace GJJP8B_HFT_2021221.Repository
             this.Context.SaveChanges();
         }
 
-        public void ChangePrice(int id, int newPrice)
+        public void ChangePrice(int id, float newPrice)
         {
             var cheese = this.ReturnOne(id);
             if (cheese == null)

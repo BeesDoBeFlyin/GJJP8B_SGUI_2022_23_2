@@ -53,5 +53,12 @@ namespace GJJP8B_HFT_2021221.Endpoint
         {
             cheeseLogic.DeleteCheeseById(id);
         }
+
+        [Route("UnderPrice/{price}")]
+        [HttpGet]
+        public IQueryable<Cheese> GetCheesesUnderPrce(float price)
+        {
+            return cheeseLogic.CheesesUnderPrice(price);
+        }
     }
 }
