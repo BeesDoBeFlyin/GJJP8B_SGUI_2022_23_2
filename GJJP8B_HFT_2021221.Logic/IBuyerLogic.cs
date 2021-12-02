@@ -18,5 +18,6 @@ namespace GJJP8B_HFT_2021221.Logic
         void ChangePreferredCheese(int id, int newCheeseId);
         float ReturnMoney(int id);
         bool CanAfford(int id, float price);
+        IQueryable<Buyer> ListBuyersWithGivenCheesePreference(Cheese cheese); 
     }
 }

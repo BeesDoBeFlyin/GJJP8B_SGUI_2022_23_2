@@ -11,6 +11,7 @@ namespace GJJP8B_HFT_2021221.Logic
     public class BuyerLogic : IBuyerLogic
     {
         private IBuyerRepository repository;
+        private ICheeseRepository cheeseRepo;
 
         public BuyerLogic(IBuyerRepository buyerRepository)
         {
@@ -60,6 +61,12 @@ namespace GJJP8B_HFT_2021221.Logic
         public bool CanAfford(int id, float price)
         {
             return (ReturnMoney(id) > price);
+        }
+
+        public IQueryable<Buyer> ListBuyersWithGivenCheesePreference(Cheese cheese)
+        {
+            IQueryable<Buyer> buyers = repository.ReturnAll().Where(x => x.CheeseId == cheese.Id);
+            return buyers;
         }
     }
 }
