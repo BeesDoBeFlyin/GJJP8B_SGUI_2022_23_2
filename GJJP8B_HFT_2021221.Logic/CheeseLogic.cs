@@ -12,6 +12,7 @@ namespace GJJP8B_HFT_2021221.Logic
     { 
 
         private ICheeseRepository repository;
+        private IMilkRepository milkRepo;
 
         public CheeseLogic(ICheeseRepository cheeseRepository)
         {
@@ -66,6 +67,18 @@ namespace GJJP8B_HFT_2021221.Logic
                 if (item.Price < price)
                     cheeses.Add(item);
             }
+
+            return cheeses.AsQueryable<Cheese>();
+        }
+
+        public Milk MadeOf(int id)
+        {
+            return milkRepo.ReturnOne(repository.ReturnOne(id).MilkId);
+        }
+
+        public IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
+        {
+            IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.MilkId == milk.Id);
 
             return cheeses.AsQueryable<Cheese>();
         }

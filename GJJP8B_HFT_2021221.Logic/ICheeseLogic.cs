@@ -18,5 +18,7 @@ namespace GJJP8B_HFT_2021221.Logic
         void ChangeMilk(int id, int newMilkId);
         float ReturnPrice(int id);
         IQueryable<Cheese> CheesesUnderPrice(float price);
+        Milk MadeOf(int id);
+        IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk);
     }
 }
