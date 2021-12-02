@@ -42,7 +42,7 @@ namespace GJJP8B_HFT_2021221.Logic
             repository.Delete(id);
         }
 
-        public void ChangeMoney(int id, int newMoney)
+        public void ChangeMoney(int id, float newMoney)
         {
             repository.ChangeMoney(id, newMoney);
         }
@@ -50,6 +50,16 @@ namespace GJJP8B_HFT_2021221.Logic
         public void ChangePreferredCheese(int id, int newCheeseId)
         {
             repository.ChangePreferredCheese(id, newCheeseId);
+        }
+
+        public float ReturnMoney(int id)
+        {
+            return repository.ReturnOne(id).Money;
+        }
+
+        public bool CanAfford(int id, float price)
+        {
+            return (ReturnMoney(id) > price);
         }
     }
 }

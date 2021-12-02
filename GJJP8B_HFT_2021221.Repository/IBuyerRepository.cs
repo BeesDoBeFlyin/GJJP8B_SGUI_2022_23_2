@@ -11,7 +11,7 @@ namespace GJJP8B_HFT_2021221.Repository
     {
         void ChangeName(int id, string newName);
 
-        void ChangeMoney(int id, int newMoney);
+        void ChangeMoney(int id, float newMoney);
 
         void ChangePreferredCheese(int id, int newCheeseId);
     }

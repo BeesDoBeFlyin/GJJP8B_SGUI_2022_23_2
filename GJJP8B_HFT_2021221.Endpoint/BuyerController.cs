@@ -53,5 +53,12 @@ namespace GJJP8B_HFT_2021221.Endpoint
         {
             buyerLogic.DeleteBuyerById(id);
         }
+
+        [Route("CanAfford/{price}")]
+        [HttpGet]
+        public bool CanAfford(int id, float price)
+        {
+            return buyerLogic.CanAfford(id, price);
+        }
     }
 }

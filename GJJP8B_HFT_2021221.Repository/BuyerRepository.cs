@@ -15,7 +15,7 @@ namespace GJJP8B_HFT_2021221.Repository
 
         }
 
-        public void ChangeMoney(int id, int newMoney)
+        public void ChangeMoney(int id, float newMoney)
         {
             var buyer = this.ReturnOne(id);
             if (buyer == null)

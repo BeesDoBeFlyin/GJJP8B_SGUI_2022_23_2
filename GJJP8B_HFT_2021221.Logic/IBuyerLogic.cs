@@ -14,7 +14,9 @@ namespace GJJP8B_HFT_2021221.Logic
         void ChangeBuyerName(int id, string newName);
         Buyer GetBuyerById(int id);
         void DeleteBuyerById(int id);
-        void ChangeMoney(int id, int newMoney);
+        void ChangeMoney(int id, float newMoney);
         void ChangePreferredCheese(int id, int newCheeseId);
+        float ReturnMoney(int id);
+        bool CanAfford(int id, float price);
     }
 }
