@@ -67,5 +67,19 @@ namespace GJJP8B_HFT_2021221.Endpoint
         {
             return cheeseLogic.CheesesUnderPrice(price);
         }
+
+        [Route("ListCheesesMadeOfGivenMilk/{milk}")]
+        [HttpGet]
+        public IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
+        {
+            return cheeseLogic.ListCheesesMadeOfGivenMilk(milk);
+        }
+
+        [Route("ListCheesesWithMaterialCheaperThanGiven/{price}")]
+        [HttpGet]
+        public IQueryable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
+        {
+            return cheeseLogic.ListCheesesWithMaterialCheaperThanGiven(price);
+        }
     }
 }
