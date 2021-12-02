@@ -54,6 +54,13 @@ namespace GJJP8B_HFT_2021221.Endpoint
             milkLogic.DeleteMilkById(id);
         }
 
+        [Route("ChangePrice/{price}")]
+        [HttpPut]
+        public void ChangePrice(int id, float price)
+        {
+            milkLogic.ChangePrice(id, price);
+        }
+
         [Route("UnderPrice/{price}")]
         [HttpGet]
         public IQueryable<Milk> GetMilksUnderPrce(float price)
