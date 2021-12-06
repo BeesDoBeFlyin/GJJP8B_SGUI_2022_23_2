@@ -22,7 +22,7 @@ namespace GJJP8B_HFT_2021221.Logic
         IEnumerable<Cheese> CheesesAtPrice(float price);
         IEnumerable<Cheese> CheesesAbovePrice(float price);
         IEnumerable MadeOf(int id);
-        IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk);
+        IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(int id);
         IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price);
     }
 }

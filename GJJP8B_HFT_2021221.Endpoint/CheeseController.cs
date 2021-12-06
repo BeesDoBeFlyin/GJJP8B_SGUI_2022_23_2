@@ -92,9 +92,9 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
         [Route("ListCheesesMadeOfGivenMilk/{milk}")]
         [HttpGet]
-        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
+        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(int id)
         {
-            return cheeseLogic.ListCheesesMadeOfGivenMilk(milk);
+            return cheeseLogic.ListCheesesMadeOfGivenMilk(id);
         }
 
         [Route("ListCheesesWithMaterialCheaperThanGiven/{price}")]
