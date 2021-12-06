@@ -65,9 +65,9 @@ namespace GJJP8B_HFT_2021221.Logic
             return milks;
         }
         
-        public IQueryable<Milk> MilksAbovePrice(float price)
+        public IEnumerable<Milk> MilksAbovePrice(float price)
         {
-            IQueryable<Milk> milks = repository.ReturnAll().Where(x => x.Price > price);
+            IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price > price);
 
             return milks;
         }
