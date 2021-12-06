@@ -1,6 +1,7 @@
 ﻿using GJJP8B_HFT_2021221.Models;
 using GJJP8B_HFT_2021221.Repository;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,28 +60,28 @@ namespace GJJP8B_HFT_2021221.Logic
             return repository.ReturnOne(id).Price;
         }
 
-        public IQueryable<Cheese> CheesesUnderPrice(float price)
+        public IEnumerable<Cheese> CheesesUnderPrice(float price)
         {
-            IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price < price);
+            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price < price);
 
             return cheeses.AsQueryable<Cheese>();
         }
 
-        public IQueryable<Cheese> CheesesAtPrice(float price)
+        public IEnumerable<Cheese> CheesesAtPrice(float price)
         {
-            IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price == price);
+            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price == price);
 
             return cheeses.AsQueryable<Cheese>();
         }
 
-        public IQueryable<Cheese> CheesesAbovePrice(float price)
+        public IEnumerable<Cheese> CheesesAbovePrice(float price)
         {
-            IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price > price);
+            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price > price);
 
             return cheeses.AsQueryable<Cheese>();
         }
 
-        public IQueryable MadeOf(int id)
+        public IEnumerable MadeOf(int id)
         {
             var madeOf = from a in milkRepo.ReturnAll()
                          join b in repository.ReturnAll() on a.Id equals b.MilkId
@@ -92,19 +93,19 @@ namespace GJJP8B_HFT_2021221.Logic
                              Id = a.Id,
                              Cheeses = a.Cheeses
                          };
-            return madeOf;
+            return madeOf as IEnumerable;
         }
 
-        public IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
+        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
         {
-            IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.MilkId == milk.Id);
+            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.MilkId == milk.Id);
 
             return cheeses.AsQueryable<Cheese>();
         }
 
-        public IQueryable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
+        public IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
         {
-            IQueryable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Milk.Price < price);
+            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Milk.Price < price);
 
             return cheeses;
         }

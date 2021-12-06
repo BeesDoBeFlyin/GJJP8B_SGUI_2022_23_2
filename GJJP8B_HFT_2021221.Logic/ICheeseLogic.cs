@@ -1,5 +1,6 @@
 ﻿using GJJP8B_HFT_2021221.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,11 @@ namespace GJJP8B_HFT_2021221.Logic
         void ChangePrice(int id, float newPrice);
         void ChangeMilk(int id, int newMilkId);
         float ReturnPrice(int id);
-        IQueryable<Cheese> CheesesUnderPrice(float price);
-        IQueryable<Cheese> CheesesAtPrice(float price);
-        IQueryable<Cheese> CheesesAbovePrice(float price);
-        IQueryable MadeOf(int id);
-        IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk);
-        IQueryable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price);
+        IEnumerable<Cheese> CheesesUnderPrice(float price);
+        IEnumerable<Cheese> CheesesAtPrice(float price);
+        IEnumerable<Cheese> CheesesAbovePrice(float price);
+        IEnumerable MadeOf(int id);
+        IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk);
+        IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price);
     }
 }

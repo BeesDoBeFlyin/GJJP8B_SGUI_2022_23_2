@@ -2,6 +2,7 @@
 using GJJP8B_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,42 +64,42 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
         [Route("UnderPrice/{price}")]
         [HttpGet]
-        public IQueryable<Cheese> GetCheesesUnderPrce(float price)
+        public IEnumerable<Cheese> GetCheesesUnderPrce(float price)
         {
             return cheeseLogic.CheesesUnderPrice(price);
         }
 
         [Route("AtPrice/{price}")]
         [HttpGet]
-        public IQueryable<Cheese> GetCheesesAtPrice(float price)
+        public IEnumerable<Cheese> GetCheesesAtPrice(float price)
         {
             return cheeseLogic.CheesesAtPrice(price);
         }
 
         [Route("AbovePrice/{price}")]
         [HttpGet]
-        public IQueryable<Cheese> GetCheesesAbovePrce(float price)
+        public IEnumerable<Cheese> GetCheesesAbovePrce(float price)
         {
             return cheeseLogic.CheesesAbovePrice(price);
         }
 
         [Route("MadeOf/{id}")]
         [HttpGet]
-        public IQueryable MadeOf(int id)
+        public IEnumerable MadeOf(int id)
         {
             return cheeseLogic.MadeOf(id);
         }
 
         [Route("ListCheesesMadeOfGivenMilk/{milk}")]
         [HttpGet]
-        public IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
+        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
         {
             return cheeseLogic.ListCheesesMadeOfGivenMilk(milk);
         }
 
         [Route("ListCheesesWithMaterialCheaperThanGiven/{price}")]
         [HttpGet]
-        public IQueryable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
+        public IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
         {
             return cheeseLogic.ListCheesesWithMaterialCheaperThanGiven(price);
         }
