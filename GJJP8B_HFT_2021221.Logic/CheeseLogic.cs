@@ -85,7 +85,7 @@ namespace GJJP8B_HFT_2021221.Logic
         {
             var madeOf = from a in milkRepo.ReturnAll()
                          join b in repository.ReturnAll() on a.Id equals b.MilkId
-                         where (id == a.Id && b.MilkId == id)
+                         where (b.MilkId == id)
                          select new Milk
                          {
                              Name = a.Name,
@@ -96,11 +96,14 @@ namespace GJJP8B_HFT_2021221.Logic
             return madeOf as IEnumerable;
         }
 
-        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
+        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(int id)
         {
-            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.MilkId == milk.Id);
+            var cheeses = from a in milkRepo.ReturnAll()
+                          join b in repository.ReturnAll() on a.Id equals b.MilkId
+                          where (id == a.Id)
+                          select b;
 
-            return cheeses.AsQueryable<Cheese>();
+            return cheeses.AsEnumerable<Cheese>();
         }
 
         public IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
