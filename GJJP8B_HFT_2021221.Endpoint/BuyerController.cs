@@ -69,7 +69,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
         [Route("ListBuyersWithGivenCheesePreference/{cheese}")]
         [HttpGet]
-        public IQueryable<Buyer> ListBuyersWithGivenCheesePreference(Cheese cheese)
+        public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(Cheese cheese)
         {
             return buyerLogic.ListBuyersWithGivenCheesePreference(cheese);
         }
