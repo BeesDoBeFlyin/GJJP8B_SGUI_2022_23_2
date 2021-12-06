@@ -84,7 +84,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
         [Route("MadeOf/{id}")]
         [HttpGet]
-        public Milk MadeOf(int id)
+        public string MadeOf(int id)
         {
             return cheeseLogic.MadeOf(id);
         }

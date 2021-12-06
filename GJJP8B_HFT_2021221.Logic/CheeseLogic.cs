@@ -80,9 +80,13 @@ namespace GJJP8B_HFT_2021221.Logic
             return cheeses.AsQueryable<Cheese>();
         }
 
-        public Milk MadeOf(int id)
+        public String MadeOf(int id)
         {
-            return milkRepo.ReturnOne(repository.ReturnOne(id).MilkId);
+            var madeOf = from a in milkRepo.ReturnAll()
+                         join b in repository.ReturnAll() on a.Id equals b.MilkId
+                         where (id == a.Id && b.MilkId == id)
+                         select (a.Name);
+            return madeOf.ToString();
         }
 
         public IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
