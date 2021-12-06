@@ -51,16 +51,16 @@ namespace GJJP8B_HFT_2021221.Logic
             return repository.ReturnOne(id).Price;
         }
 
-        public IQueryable<Milk> MilksUnderPrice(float price)
+        public IEnumerable<Milk> MilksUnderPrice(float price)
         {
-            IQueryable<Milk> milks = repository.ReturnAll().Where(x => x.Price < price);
+            IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price < price);
 
             return milks;
         }
 
-        public IQueryable<Milk> MilksAtPricePoint(float price)
+        public IEnumerable<Milk> MilksAtPricePoint(float price)
         {
-            IQueryable<Milk> milks = repository.ReturnAll().Where(x => x.Price == price);
+            IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price == price);
 
             return milks;
         }

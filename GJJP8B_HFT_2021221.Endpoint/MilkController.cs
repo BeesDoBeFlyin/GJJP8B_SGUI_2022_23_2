@@ -63,21 +63,21 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
         [Route("UnderPrice/{price}")]
         [HttpGet]
-        public IQueryable<Milk> GetMilksUnderPrce(float price)
+        public IEnumerable<Milk> GetMilksUnderPrce(float price)
         {
             return milkLogic.MilksUnderPrice(price);
         }
 
         [Route("AtPrice/{price}")]
         [HttpGet]
-        public IQueryable<Milk> GetMilksAtPricePoint(float price)
+        public IEnumerable<Milk> GetMilksAtPricePoint(float price)
         {
             return milkLogic.MilksAtPricePoint(price);
         }
         
         [Route("AbovePrice/{price}")]
         [HttpGet]
-        public IQueryable<Milk> GetMilksAbovePrice(float price)
+        public IEnumerable<Milk> GetMilksAbovePrice(float price)
         {
             return milkLogic.MilksAbovePrice(price);
         }
