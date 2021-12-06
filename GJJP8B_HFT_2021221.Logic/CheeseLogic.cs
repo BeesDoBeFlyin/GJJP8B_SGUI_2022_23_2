@@ -10,13 +10,13 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public class CheeseLogic : ICheeseLogic
     { 
-
         private ICheeseRepository repository;
         private IMilkRepository milkRepo;
 
-        public CheeseLogic(ICheeseRepository cheeseRepository)
+        public CheeseLogic(ICheeseRepository cheeseRepository, IMilkRepository milkRepository)
         {
-            repository = cheeseRepository;
+            this.repository = cheeseRepository;
+            this.milkRepo = milkRepository;
         }
 
         public Cheese GetCheeseById(int id)
@@ -80,13 +80,19 @@ namespace GJJP8B_HFT_2021221.Logic
             return cheeses.AsQueryable<Cheese>();
         }
 
-        public String MadeOf(int id)
+        public IQueryable MadeOf(int id)
         {
             var madeOf = from a in milkRepo.ReturnAll()
                          join b in repository.ReturnAll() on a.Id equals b.MilkId
                          where (id == a.Id && b.MilkId == id)
-                         select (a.Name);
-            return madeOf.ToString();
+                         select new Milk
+                         {
+                             Name = a.Name,
+                             Price = a.Price,
+                             Id = a.Id,
+                             Cheeses = a.Cheeses
+                         };
+            return madeOf;
         }
 
         public IQueryable<Cheese> ListCheesesMadeOfGivenMilk(Milk milk)
