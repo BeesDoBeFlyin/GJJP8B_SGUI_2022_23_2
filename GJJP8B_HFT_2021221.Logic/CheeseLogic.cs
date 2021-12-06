@@ -93,6 +93,7 @@ namespace GJJP8B_HFT_2021221.Logic
                              Id = a.Id,
                              Cheeses = a.Cheeses
                          };
+
             return madeOf as IEnumerable;
         }
 
@@ -103,7 +104,7 @@ namespace GJJP8B_HFT_2021221.Logic
                           where (b.Id == id)
                           select a;
 
-            return cheeses;
+            return cheeses as IEnumerable<Cheese>;
         }
 
         public IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
@@ -113,7 +114,7 @@ namespace GJJP8B_HFT_2021221.Logic
                           where (b.Price < price)
                           select a;
 
-            return cheeses;
+            return cheeses as IEnumerable<Cheese>;
         }
     }
 }
