@@ -18,7 +18,7 @@ namespace GJJP8B_HFT_2021221.Logic
         void ChangePreferredCheese(int id, int newCheeseId);
         float ReturnMoney(int id);
         bool CanAffordGivenCheese(int id, int cheeseid);
-        IEnumerable<Buyer> ListBuyersWhoCanAffordGivenCheese(int id, int cheeseid);
+        IEnumerable<Buyer> ListBuyersWhoCanAffordGivenCheese(int cheeseid);
         IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(int id); 
     }
 }
