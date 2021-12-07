@@ -71,7 +71,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
         [HttpGet]
         public IEnumerable<Buyer> ListBuyersWhoCanAffordGivenCheese(int id, int cheeseid)
         {
-            return buyerLogic.ListBuyerWhoCanAffordGivenCheese(id, cheeseid);
+            return buyerLogic.ListBuyersWhoCanAffordGivenCheese(id, cheeseid);
         }
 
         [Route("ListBuyersWithGivenCheesePreference/{id}")]
