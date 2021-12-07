@@ -59,9 +59,9 @@ namespace GJJP8B_HFT_2021221.Logic
             return repository.ReturnOne(id).Money;
         }
 
-        public bool CanAfford(int id, float price)
+        public bool CanAffordGivenCheese(int id, int cheeseid)
         {
-            return (ReturnMoney(id) > price);
+            return (repository.ReturnOne(id).Money > cheeseRepo.ReturnOne(id).Price);
         }
 
         public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(int id)

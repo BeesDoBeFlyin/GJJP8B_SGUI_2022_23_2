@@ -60,11 +60,11 @@ namespace GJJP8B_HFT_2021221.Endpoint
             buyerLogic.ChangeMoney(id, price);
         }
 
-        [Route("CanAfford/{price}")]
+        [Route("CanAfford/{id}/{cheeseid}")]
         [HttpGet]
-        public bool CanAfford(int id, float price)
+        public bool CanAfford(int id, int cheeseid)
         {
-            return buyerLogic.CanAfford(id, price);
+            return buyerLogic.CanAffordGivenCheese(id, cheeseid);
         }
 
         [Route("ListBuyersWithGivenCheesePreference/{id}")]
