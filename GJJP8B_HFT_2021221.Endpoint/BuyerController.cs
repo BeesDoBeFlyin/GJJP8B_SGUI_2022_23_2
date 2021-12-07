@@ -60,11 +60,18 @@ namespace GJJP8B_HFT_2021221.Endpoint
             buyerLogic.ChangeMoney(id, price);
         }
 
-        [Route("CanAfford/{id}/{cheeseid}")]
+        [Route("CanAffordGivenCheese/{id}/{cheeseid}")]
         [HttpGet]
         public bool CanAfford(int id, int cheeseid)
         {
             return buyerLogic.CanAffordGivenCheese(id, cheeseid);
+        }
+
+        [Route("ListBuyerWhoCanAffordGivenCheese/{id}/{cheeseid}")]
+        [HttpGet]
+        public IEnumerable<Buyer> ListBuyersWhoCanAffordGivenCheese(int id, int cheeseid)
+        {
+            return buyerLogic.ListBuyerWhoCanAffordGivenCheese(id, cheeseid);
         }
 
         [Route("ListBuyersWithGivenCheesePreference/{id}")]

@@ -64,6 +64,16 @@ namespace GJJP8B_HFT_2021221.Logic
             return (repository.ReturnOne(id).Money > cheeseRepo.ReturnOne(id).Price);
         }
 
+        public IEnumerable<Buyer> ListBuyersWhoCanAffordGivenCheese(int id, int cheeseid)
+        {
+            IEnumerable<Buyer> buyers = from a in repository.ReturnAll()
+                         join b in cheeseRepo.ReturnAll() on a.CheeseId equals b.Id
+                         where (a.Money > b.Price)
+                         select a;
+            
+            return buyers;
+        }
+
         public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(int id)
         {
             IEnumerable<Buyer> buyers = from a in repository.ReturnAll()
