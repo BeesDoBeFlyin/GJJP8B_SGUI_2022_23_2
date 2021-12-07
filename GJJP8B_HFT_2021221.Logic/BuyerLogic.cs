@@ -13,9 +13,10 @@ namespace GJJP8B_HFT_2021221.Logic
         private IBuyerRepository repository;
         private ICheeseRepository cheeseRepo;
 
-        public BuyerLogic(IBuyerRepository buyerRepository)
+        public BuyerLogic(IBuyerRepository buyerRepository, ICheeseRepository cheeseRepostory)
         {
             repository = buyerRepository;
+            cheeseRepo = cheeseRepostory;
         }
 
         public Buyer GetBuyerById(int id)
