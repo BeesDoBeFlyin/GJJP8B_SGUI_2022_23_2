@@ -67,11 +67,11 @@ namespace GJJP8B_HFT_2021221.Endpoint
             return buyerLogic.CanAfford(id, price);
         }
 
-        [Route("ListBuyersWithGivenCheesePreference/{cheese}")]
+        [Route("ListBuyersWithGivenCheesePreference/{id}")]
         [HttpGet]
-        public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(Cheese cheese)
+        public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(int id)
         {
-            return buyerLogic.ListBuyersWithGivenCheesePreference(cheese);
+            return buyerLogic.ListBuyersWithGivenCheesePreference(id);
         }
     }
 }

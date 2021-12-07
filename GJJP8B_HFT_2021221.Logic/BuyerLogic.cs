@@ -63,9 +63,12 @@ namespace GJJP8B_HFT_2021221.Logic
             return (ReturnMoney(id) > price);
         }
 
-        public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(Cheese cheese)
+        public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(int id)
         {
-            IEnumerable<Buyer> buyers = repository.ReturnAll().Where(x => x.CheeseId == cheese.Id);
+            IEnumerable<Buyer> buyers = from a in repository.ReturnAll()
+                                        join b in cheeseRepo.ReturnAll() on a.CheeseId equals b.Id
+                                        where (a.CheeseId == id)
+                                        select a;
             return buyers;
         }
     }
