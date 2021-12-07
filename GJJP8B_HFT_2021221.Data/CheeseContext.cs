@@ -46,7 +46,7 @@ namespace GJJP8B_HFT_2021221.Data
             Cheese c2 = new() { Id = 2, Name = "GoatCheese", Price = 3500, MilkId = 2, Buyers = new List<Buyer>() };
             Cheese c3 = new() { Id = 3, Name = "Maci", Price = 850, MilkId = 1, Buyers = new List<Buyer>() };
 
-            Buyer b1 = new() { Id = 1, Name = "Test Ferenc", Money = 5500, CheeseId = 1 };
+            Buyer b1 = new() { Id = 1, Name = "Test Ferenc", Money = 1200, CheeseId = 1 };
             Buyer b2 = new() { Id = 2, Name = "Teás K. Anna", Money = 9800, CheeseId = 2 };
             Buyer b3 = new() { Id = 3, Name = "Sigh Kyle", Money = 6500, CheeseId = 3 };
 
