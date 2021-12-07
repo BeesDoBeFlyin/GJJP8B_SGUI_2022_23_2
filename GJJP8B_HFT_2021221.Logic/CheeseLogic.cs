@@ -64,21 +64,21 @@ namespace GJJP8B_HFT_2021221.Logic
         {
             IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price < price);
 
-            return cheeses.AsQueryable<Cheese>();
+            return cheeses;
         }
 
         public IEnumerable<Cheese> CheesesAtPrice(float price)
         {
             IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price == price);
 
-            return cheeses.AsQueryable<Cheese>();
+            return cheeses;
         }
 
         public IEnumerable<Cheese> CheesesAbovePrice(float price)
         {
             IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price > price);
 
-            return cheeses.AsQueryable<Cheese>();
+            return cheeses;
         }
 
         public IEnumerable MadeOf(int id)
