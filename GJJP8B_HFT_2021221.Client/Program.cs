@@ -10,7 +10,7 @@ namespace GJJP8B_HFT_2021221.Client
         static void Main(string[] args)
         {
             RestService server = new RestService("http://localhost:37371");
-
+            //looks fire, doesn't work :(
             var milkMenu = new ConsoleMenu()
                 .Add("Create new Milk", () => AddNewMilk(server))
                 .Add("List one Milk", () => ReturnOneMilk(server))
