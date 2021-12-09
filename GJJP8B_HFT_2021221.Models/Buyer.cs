@@ -18,5 +18,10 @@ namespace GJJP8B_HFT_2021221.Models
         [JsonIgnore]
         public virtual Cheese Cheese { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Id} - {Name}'s treasury: {Money} pieces of money, and their prefferred cheese's id is {CheeseId}.";
+        }
+
     }
 }

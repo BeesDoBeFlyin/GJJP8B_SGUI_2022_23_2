@@ -25,5 +25,10 @@ namespace GJJP8B_HFT_2021221.Models
         public virtual Milk Milk { get; set; }
         [JsonIgnore]
         public virtual ICollection<Buyer> Buyers { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} - {Name}'s price: {Price} pieces of money, and is made of milk with the id of {MilkId}.";
+        }
     }
 }
