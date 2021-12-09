@@ -46,6 +46,19 @@ namespace GJJP8B_HFT_2021221.Client
                     config.Selector = "#>";
                     config.SelectedItemBackgroundColor = ConsoleColor.Cyan;
                 });
+
+            var mainMenu = new ConsoleMenu()
+                .Add("Milk", () => milkMenu.Show())
+                .Add("Cheese", () => cheeseMenu.Show())
+                .Add("Buyer", () => buyerMenu.Show())
+                .Add("Exit", ConsoleMenu.Close)
+                .Configure(config =>
+                 {
+                     config.Selector = "#>";
+                     config.SelectedItemBackgroundColor = ConsoleColor.Cyan;
+                 });
+
+            mainMenu.Show();
         }
         #region Milks
         public static void AddNewMilk(RestService server)
@@ -53,9 +66,9 @@ namespace GJJP8B_HFT_2021221.Client
             try
             {
                 Console.WriteLine("Creating a new Milk!");
-                Console.Write("Name: ");
+                Console.WriteLine("Name: ");
                 string name = Console.ReadLine();
-                Console.Write("Price: ");
+                Console.WriteLine("Price: ");
                 float price = float.Parse(Console.ReadLine());
                 server.Post(new Milk { Name = name, Price = price, Cheeses = new List<Cheese>() }, "milk");
                 Console.WriteLine("Milk has been created. Don't ask how.");
@@ -120,11 +133,11 @@ namespace GJJP8B_HFT_2021221.Client
             try
             {
                 Console.WriteLine("Creating a new Cheese!");
-                Console.Write("Name: ");
+                Console.WriteLine("Name: ");
                 string name = Console.ReadLine();
-                Console.Write("Price: ");
+                Console.WriteLine("Price: ");
                 float price = float.Parse(Console.ReadLine());
-                Console.Write("Made of (milk id): ");
+                Console.WriteLine("Made of (milk id): ");
                 int milkId = int.Parse(Console.ReadLine());
                 server.Post(new Cheese { Name = name, Price = price, MilkId = milkId, Buyers = new List<Buyer>() }, "cheese");
                 Console.WriteLine("Cheese has been created. Don't drop it!");
@@ -189,11 +202,11 @@ namespace GJJP8B_HFT_2021221.Client
             try
             {
                 Console.WriteLine("Creating a new Buyer (oh no, 18+)!");
-                Console.Write("Name: ");
+                Console.WriteLine("Name: ");
                 string name = Console.ReadLine();
-                Console.Write("Money: ");
+                Console.WriteLine("Money: ");
                 float money = float.Parse(Console.ReadLine());
-                Console.Write("Preferred cheese (cheese id): ");
+                Console.WriteLine("Preferred cheese (cheese id): ");
                 int cheeseId = int.Parse(Console.ReadLine());
                 server.Post(new Buyer { Name = name, Money = money, CheeseId = cheeseId }, "buyer");
                 Console.WriteLine("Buyer has been created. Parent responsibely!");
