@@ -13,6 +13,7 @@ namespace GJJP8B_HFT_2021221.Test
     public class CheeseLogicTests
     {
         private CheeseLogic ILogic { get; set; }
+        private MilkLogic MLogic { get; set; }
 
         private IQueryable<Cheese> FakeCheeses()
         {
@@ -29,15 +30,37 @@ namespace GJJP8B_HFT_2021221.Test
             return FakeCheeses.AsQueryable();
         }
 
+        private IQueryable<Milk> FakeMilks()
+        {
+            Milk m1 = new() { Id = 1, Name = "Mommy Milk", Price = 1500, Cheeses = new List<Cheese>() };
+            Milk m2 = new() { Id = 2, Name = "I'm advised to continue this meme no further", Price = 500, Cheeses = new List<Cheese>() };
+            Milk m3 = new() { Id = 2, Name = "Ohno", Price = 250, Cheeses = new List<Cheese>() };
+
+            List<Milk> milks = new();
+
+            milks.Add(m1);
+            milks.Add(m2);
+            milks.Add(m3);
+
+            return milks.AsQueryable();
+        }
+
         [SetUp]
         public void SetUp()
         {
+            Mock<IMilkRepository> mockedMilkRepository = new();
+            mockedMilkRepository.Setup(x => x.ReturnOne(It.IsAny<int>())).Returns<int>((id) => FakeMilks().FirstOrDefault(x => x.Id == id));
+            mockedMilkRepository.Setup(x => x.ChangeName(It.IsNotIn<int>(1, 2), It.IsAny<string>())).Throws(new Exception());
+            mockedMilkRepository.Setup(x => x.ReturnAll()).Returns(FakeMilks());
+
+            this.MLogic = new MilkLogic(mockedMilkRepository.Object);
+
             Mock<ICheeseRepository> mockedCheeseRepository = new();
             mockedCheeseRepository.Setup(x => x.ReturnOne(It.IsAny<int>())).Returns<int>((id) => FakeCheeses().FirstOrDefault(x => x.Id == id));
             mockedCheeseRepository.Setup(x => x.ChangeName(It.IsNotIn<int>(1, 2), It.IsAny<string>())).Throws(new Exception());
             mockedCheeseRepository.Setup(x => x.ReturnAll()).Returns(FakeCheeses());
 
-            this.ILogic = new CheeseLogic(mockedCheeseRepository.Object);
+            this.ILogic = new CheeseLogic(mockedCheeseRepository.Object, mockedMilkRepository.Object);
         }
 
         [Test]
@@ -79,7 +102,7 @@ namespace GJJP8B_HFT_2021221.Test
         [Test]
         public void CheeseUnderPriceTest()
         {
-            IQueryable<Cheese> test = ILogic.CheesesUnderPrice(1200f);
+            IEnumerable<Cheese> test = ILogic.CheesesUnderPrice(1200f);
 
             Assert.That(test.Count() == 1);
         }
