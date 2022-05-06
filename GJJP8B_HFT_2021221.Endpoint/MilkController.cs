@@ -19,7 +19,6 @@ namespace GJJP8B_HFT_2021221.Endpoint
             this.milkLogic = milkLogic;
         }
 
-        [Route("ReadAll")]
         [HttpGet]
         public IEnumerable<Milk> ReadAll()
         {

@@ -19,7 +19,6 @@ namespace GJJP8B_HFT_2021221.Endpoint
             this.buyerLogic = buyerLogic;
         }
 
-        [Route("ReadAll")]
         [HttpGet]
         public IEnumerable<Buyer> ReadAll()
         {

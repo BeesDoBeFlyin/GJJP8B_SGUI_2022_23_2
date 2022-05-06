@@ -20,7 +20,6 @@ namespace GJJP8B_HFT_2021221.Endpoint
             this.cheeseLogic = cheeseLogic;
         }
 
-        [Route("ReadAll")]
         [HttpGet]
         public IEnumerable<Cheese> ReadAll()
         {

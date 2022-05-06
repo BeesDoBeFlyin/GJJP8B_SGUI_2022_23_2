@@ -70,7 +70,7 @@ namespace GJJP8B_HFT_2021221.Client
                 string name = Console.ReadLine();
                 Console.WriteLine("Price: ");
                 float price = float.Parse(Console.ReadLine());
-                server.Post(new Milk { Name = name, Price = price, Cheeses = new List<Cheese>() }, "milk");
+                server.Post(new Milk { Name = name, Price = price, CheesesNonDb = new List<Cheese>() }, "milk");
                 Console.WriteLine("Milk has been created. Don't ask how.");
             }
             catch (Exception e)
@@ -139,7 +139,7 @@ namespace GJJP8B_HFT_2021221.Client
                 float price = float.Parse(Console.ReadLine());
                 Console.WriteLine("Made of (milk id): ");
                 int milkId = int.Parse(Console.ReadLine());
-                server.Post(new Cheese { Name = name, Price = price, MilkId = milkId, Buyers = new List<Buyer>() }, "cheese");
+                server.Post(new Cheese { Name = name, Price = price, MilkId = milkId, BuyersNonDb = new List<Buyer>() }, "cheese");
                 Console.WriteLine("Cheese has been created. Don't drop it!");
             }
             catch (Exception e)

@@ -20,7 +20,7 @@ namespace GJJP8B_HFT_2021221.Models
         public string Name { get; set; }
         public float Price { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Cheese> Cheeses { get; set; }
+        public virtual ICollection<Cheese> CheesesNonDb { get; set; }
         public override string ToString()
         {
             return $"{Id} - {Name}'s price: {Price} pieces of money.";

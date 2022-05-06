@@ -16,7 +16,7 @@ namespace GJJP8B_HFT_2021221.Models
         public float Money { get; set; }
         public int CheeseId { get; set; }
         [JsonIgnore]
-        public virtual Cheese Cheese { get; set; }
+        public virtual Cheese CheeseVirtual { get; set; }
 
         public override string ToString()
         {
