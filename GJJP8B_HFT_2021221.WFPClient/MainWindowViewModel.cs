@@ -122,7 +122,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
             if (!IsInDesignMode)
             {
                 #region Cheese
-                Cheeses = new RestCollection<Cheese>("http://localhost:37371/", "cheese", "hub");
+                Cheeses = new RestCollection<Cheese>("http://localhost:37371/", "cheese");
                 #region cruds
                 CreateCheeseCommand = new RelayCommand(() =>
                 {
@@ -166,7 +166,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
                 #endregion
                 #endregion
                 #region Milk
-                Milks = new RestCollection<Milk>("http://localhost:37371/", "milk", "hub");
+                Milks = new RestCollection<Milk>("http://localhost:37371/", "milk");
                 CreateMilkCommand = new RelayCommand(() =>
                 {
                     Milks.Add(new Milk()
@@ -201,7 +201,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
                 SelectedMilk = new Milk();
                 #endregion
                 #region Buyer
-                Buyers = new RestCollection<Buyer>("http://localhost:37371/", "buyer", "hub");
+                Buyers = new RestCollection<Buyer>("http://localhost:37371/", "buyer");
                 CreateBuyerCommand = new RelayCommand(() =>
                 {
                     Buyers.Add(new Buyer()
