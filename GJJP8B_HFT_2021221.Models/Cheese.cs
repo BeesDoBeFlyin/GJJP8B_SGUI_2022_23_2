@@ -14,7 +14,7 @@ namespace GJJP8B_HFT_2021221.Models
     public class Cheese
     {
         //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [MaxLength(35)]
         public string Name { get; set; }
@@ -24,7 +24,7 @@ namespace GJJP8B_HFT_2021221.Models
         [JsonIgnore]
         public virtual Milk Milk { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Buyer> Buyers { get; set; }
+        public virtual ICollection<Buyer> BuyersNonDb { get; set; }
 
         public override string ToString()
         {

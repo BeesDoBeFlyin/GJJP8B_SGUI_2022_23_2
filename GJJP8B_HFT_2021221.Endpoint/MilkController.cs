@@ -1,6 +1,7 @@
 ﻿using GJJP8B_HFT_2021221.Logic;
 using GJJP8B_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,14 @@ namespace GJJP8B_HFT_2021221.Endpoint
     public class MilkController : ControllerBase
     {
         private IMilkLogic milkLogic;
+        private readonly IHubContext<SignalRHub> hub;
 
-        public MilkController(IMilkLogic milkLogic)
+        public MilkController(IMilkLogic milkLogic, IHubContext<SignalRHub> hub)
         {
             this.milkLogic = milkLogic;
+            this.hub = hub;
         }
 
-        [Route("ReadAll")]
         [HttpGet]
         public IEnumerable<Milk> ReadAll()
         {
@@ -38,6 +40,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
         public void Create(Milk newMilk)
         {
             milkLogic.AddMilk(newMilk);
+            hub.Clients.All.SendAsync("MilkCreated", newMilk);
         }
 
         [Route("ChangeMilkName/{id}/{name}")]
@@ -47,11 +50,12 @@ namespace GJJP8B_HFT_2021221.Endpoint
             milkLogic.ChangeMilkName(id, newName);
         }
 
-        [Route("Delete/{id}")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Milk milkToDelete = milkLogic.GetMilkById(id);
             milkLogic.DeleteMilkById(id);
+            hub.Clients.All.SendAsync("CheeseDeleted", milkToDelete);
         }
 
         [Route("ChangePrice/{id}/{price}")]
@@ -59,6 +63,14 @@ namespace GJJP8B_HFT_2021221.Endpoint
         public void ChangePrice(int id, float price)
         {
             milkLogic.ChangePrice(id, price);
+        }
+
+        [Route("EditAll/{id}/{name}-{price}")]
+        [HttpPut("editAll")]
+        public void EditMilk(Milk milk)
+        {
+            milkLogic.ChangeMilkName(milk.Id, milk.Name);
+            milkLogic.ChangePrice(milk.Id, milk.Price);
         }
 
         [Route("UnderPrice/{price}")]

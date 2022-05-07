@@ -16,9 +16,9 @@ namespace GJJP8B_HFT_2021221.Test
 
         private IQueryable<Milk> FakeMilks()
         {
-            Milk m1 = new() { Id = 1, Name = "Mommy Milk", Price = 1500, Cheeses = new List<Cheese>() };
-            Milk m2 = new() { Id = 2, Name = "I'm advised to continue this meme no further", Price = 500, Cheeses = new List<Cheese>() };
-            Milk m3 = new() { Id = 2, Name = "Ohno", Price = 250, Cheeses = new List<Cheese>() };
+            Milk m1 = new() { Id = 1, Name = "Mommy Milk", Price = 1500, CheesesNonDb = new List<Cheese>() };
+            Milk m2 = new() { Id = 2, Name = "I'm advised to continue this meme no further", Price = 500, CheesesNonDb = new List<Cheese>() };
+            Milk m3 = new() { Id = 2, Name = "Ohno", Price = 250, CheesesNonDb = new List<Cheese>() };
 
             List<Milk> milks = new();
 
@@ -55,7 +55,7 @@ namespace GJJP8B_HFT_2021221.Test
         {
             Milk test = ILogic.GetMilkById(1);
 
-            Milk expectedResult = new Milk() { Id = 1, Name = "Mommy Milk", Price = 1500, Cheeses = new List<Cheese>() };
+            Milk expectedResult = new Milk() { Id = 1, Name = "Mommy Milk", Price = 1500, CheesesNonDb = new List<Cheese>() };
 
             Assert.IsTrue(test.Id == expectedResult.Id);
             Assert.IsTrue(test.Name == expectedResult.Name);

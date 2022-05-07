@@ -17,9 +17,9 @@ namespace GJJP8B_HFT_2021221.Test
 
         private IQueryable<Cheese> FakeCheeses()
         {
-            Cheese c1 = new() { Id = 1, Name = "Don't ask", Price = 1500, MilkId = 1, Milk = new Milk(), Buyers = new List<Buyer>() };
-            Cheese c2 = new() { Id = 2, Name = "Trollface", Price = 2500, MilkId = 2, Milk = new Milk(), Buyers = new List<Buyer>() };
-            Cheese c3 = new() { Id = 3, Name = "Ohyes", Price = 850, MilkId = 3, Milk = new Milk(), Buyers = new List<Buyer>() };
+            Cheese c1 = new() { Id = 1, Name = "Don't ask", Price = 1500, MilkId = 1, Milk = new Milk(), BuyersNonDb = new List<Buyer>() };
+            Cheese c2 = new() { Id = 2, Name = "Trollface", Price = 2500, MilkId = 2, Milk = new Milk(), BuyersNonDb = new List<Buyer>() };
+            Cheese c3 = new() { Id = 3, Name = "Ohyes", Price = 850, MilkId = 3, Milk = new Milk(), BuyersNonDb = new List<Buyer>() };
 
             List<Cheese> FakeCheeses = new List<Cheese>();
 
@@ -32,9 +32,9 @@ namespace GJJP8B_HFT_2021221.Test
 
         private IQueryable<Milk> FakeMilks()
         {
-            Milk m1 = new() { Id = 1, Name = "Mommy Milk", Price = 1500, Cheeses = new List<Cheese>() };
-            Milk m2 = new() { Id = 2, Name = "I'm advised to continue this meme no further", Price = 500, Cheeses = new List<Cheese>() };
-            Milk m3 = new() { Id = 2, Name = "Ohno", Price = 250, Cheeses = new List<Cheese>() };
+            Milk m1 = new() { Id = 1, Name = "Mommy Milk", Price = 1500, CheesesNonDb = new List<Cheese>() };
+            Milk m2 = new() { Id = 2, Name = "I'm advised to continue this meme no further", Price = 500, CheesesNonDb = new List<Cheese>() };
+            Milk m3 = new() { Id = 2, Name = "Ohno", Price = 250, CheesesNonDb = new List<Cheese>() };
 
             List<Milk> milks = new();
 
@@ -78,7 +78,7 @@ namespace GJJP8B_HFT_2021221.Test
         {
             Cheese test = ILogic.GetCheeseById(1);
 
-            Cheese expectedResult = new Cheese() { Id = 1, Name = "Don't ask", Price = 1500, MilkId = 1, Milk = new Milk(), Buyers = new List<Buyer>() };
+            Cheese expectedResult = new Cheese() { Id = 1, Name = "Don't ask", Price = 1500, MilkId = 1, Milk = new Milk(), BuyersNonDb = new List<Buyer>() };
 
             Assert.IsTrue(test.Id == expectedResult.Id);
             Assert.IsTrue(test.Name == expectedResult.Name);

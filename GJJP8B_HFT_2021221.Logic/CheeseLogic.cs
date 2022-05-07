@@ -91,7 +91,7 @@ namespace GJJP8B_HFT_2021221.Logic
                              Name = a.Name,
                              Price = a.Price,
                              Id = a.Id,
-                             Cheeses = a.Cheeses
+                             CheesesNonDb = a.CheesesNonDb
                          };
 
             return madeOf as IEnumerable;
