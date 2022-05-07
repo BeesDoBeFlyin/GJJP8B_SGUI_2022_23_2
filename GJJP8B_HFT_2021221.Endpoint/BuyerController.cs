@@ -54,9 +54,26 @@ namespace GJJP8B_HFT_2021221.Endpoint
         }
 
         [Route("ChangeMoney/{id}/{price}")]
+        [HttpPut]
         public void ChangeMoney(int id, float price)//for the sake of consistency, the new money is called price as well
         {
             buyerLogic.ChangeMoney(id, price);
+        }
+
+        [Route("ChangeCheeseId/{id}/{cheeseId}")]
+        [HttpPut]
+        public void ChangePreferredCheesee(int id, int cheeseeId)
+        {
+            buyerLogic.ChangePreferredCheese(id, cheeseeId);
+        }
+
+        [Route("EditAll/{id}/{name}-{money}-{cheeseId}")]
+        [HttpPut("editAll")]
+        public void EditBuyer(Buyer buyer)
+        {
+            buyerLogic.ChangeBuyerName(buyer.Id, buyer.Name);
+            buyerLogic.ChangeMoney(buyer.Id, buyer.Money);
+            buyerLogic.ChangePreferredCheese(buyer.Id, buyer.CheeseId);
         }
 
         [Route("CanAffordGivenCheese/{id}/{cheeseid}")]
