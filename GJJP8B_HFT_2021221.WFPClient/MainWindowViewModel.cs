@@ -90,7 +90,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
             }
         }
 
-
+        #region cruds
         public ICommand CreateCheeseCommand { get; set; }
         public ICommand CreateMilkCommand { get; set; }
         public ICommand CreateBuyerCommand { get; set; }
@@ -102,8 +102,8 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public ICommand UpdateCheeseCommand { get; set; }
         public ICommand UpdateMilkCommand { get; set; }
         public ICommand UpdateBuyerCommand { get; set; }
-
-        #region cheese noncruds
+        #endregion
+        #region noncruds
         public ICommand CheesesUnderPriceCommand { get; set; }
         #endregion
 
