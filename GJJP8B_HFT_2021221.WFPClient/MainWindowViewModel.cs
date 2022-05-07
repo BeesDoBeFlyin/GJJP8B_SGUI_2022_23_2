@@ -103,6 +103,10 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public ICommand UpdateMilkCommand { get; set; }
         public ICommand UpdateBuyerCommand { get; set; }
 
+        #region cheese noncruds
+        public ICommand CheesesUnderPriceCommand { get; set; }
+        #endregion
+
         public static bool IsInDesignMode
         {
             get
@@ -118,7 +122,8 @@ namespace GJJP8B_HFT_2021221.WFPClient
             if (!IsInDesignMode)
             {
                 #region Cheese
-                Cheeses = new RestCollection<Cheese>("http://localhost:37371/", "cheese");
+                Cheeses = new RestCollection<Cheese>("http://localhost:37371/", "cheese", "hub");
+                #region cruds
                 CreateCheeseCommand = new RelayCommand(() =>
                 {
                     Cheeses.Add(new Cheese()
@@ -152,10 +157,16 @@ namespace GJJP8B_HFT_2021221.WFPClient
                     return SelectedCheese != null;
                 });
                 SelectedCheese = new Cheese();
-
+                #endregion
+                #region noncruds
+                CheesesUnderPriceCommand = new RelayCommand(() =>
+                {
+                    
+                });
+                #endregion
                 #endregion
                 #region Milk
-                Milks = new RestCollection<Milk>("http://localhost:37371/", "milk");
+                Milks = new RestCollection<Milk>("http://localhost:37371/", "milk", "hub");
                 CreateMilkCommand = new RelayCommand(() =>
                 {
                     Milks.Add(new Milk()
@@ -190,7 +201,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
                 SelectedMilk = new Milk();
                 #endregion
                 #region Buyer
-                Buyers = new RestCollection<Buyer>("http://localhost:37371/", "buyer");
+                Buyers = new RestCollection<Buyer>("http://localhost:37371/", "buyer", "hub");
                 CreateBuyerCommand = new RelayCommand(() =>
                 {
                     Buyers.Add(new Buyer()

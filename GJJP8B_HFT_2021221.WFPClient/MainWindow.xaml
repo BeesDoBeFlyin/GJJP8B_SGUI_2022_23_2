@@ -16,7 +16,11 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox ItemsSource="{Binding Cheeses}" SelectedItem="{Binding SelectedCheese}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <ListBox ItemsSource="{Binding Cheeses}" SelectedItem="{Binding SelectedCheese}" Grid.Row="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -34,7 +38,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Column="1">
+                <StackPanel Grid.Column="1" Grid.RowSpan="2">
                     <Label Content="Name" Background="LightBlue" Padding="5" />
                     <TextBox Text="{Binding SelectedCheese.Name}" Padding="5" Margin="0,0,0,5" />
                     <Label Content="Id" Background="LightBlue" Padding="5" />
@@ -48,6 +52,7 @@
                     <Button Content="Update selected cheese" Command="{Binding UpdateCheeseCommand}" Margin="10" Padding="10" />
                     <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
                 </StackPanel>
+                <Button Content="Something something noncrud" Command="{Binding }" Grid.Column="0" Grid.Row="1" Margin="10,11,274,10"/>
             </Grid>
         </TabItem>
         <TabItem Header="Milk">

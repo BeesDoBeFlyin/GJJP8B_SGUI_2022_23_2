@@ -1,6 +1,7 @@
 ﻿using GJJP8B_HFT_2021221.Logic;
 using GJJP8B_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace GJJP8B_HFT_2021221.Endpoint
     public class CheeseController : ControllerBase
     {
         private ICheeseLogic cheeseLogic;
+        private readonly IHubContext<SignalRHub> hub;
 
-        public CheeseController(ICheeseLogic cheeseLogic)
+        public CheeseController(ICheeseLogic cheeseLogic, IHubContext<SignalRHub> hub)
         {
             this.cheeseLogic = cheeseLogic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -38,6 +41,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
         public void Create(Cheese newCheese)
         {
             cheeseLogic.AddCheese(newCheese);
+            hub.Clients.All.SendAsync("CheeseCreated", newCheese);
         }
 
         [Route("ChangeCheeseName/{id}/{newName}")]
@@ -47,11 +51,12 @@ namespace GJJP8B_HFT_2021221.Endpoint
             cheeseLogic.ChangeCheeseName(id, newName);
         }
 
-        [Route("Delete/{id}")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Cheese cheeseToDelete = cheeseLogic.GetCheeseById(id);
             cheeseLogic.DeleteCheeseById(id);
+            hub.Clients.All.SendAsync("CheeseDeleted", cheeseToDelete);
         }
 
         [Route("ChangePrice/{id}/{price}")]
