@@ -184,7 +184,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public async Task DeleteAsync(int id, string endpoint)
         {
             HttpResponseMessage response =
-                await client.DeleteAsync(endpoint + "/" + id.ToString());
+                await client.DeleteAsync(endpoint + "/Delete/" + id.ToString());
 
             if (!response.IsSuccessStatusCode)
             {
@@ -198,7 +198,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
-                client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+                client.DeleteAsync(endpoint + "/Delete/" + id.ToString()).GetAwaiter().GetResult();
 
             if (!response.IsSuccessStatusCode)
             {
