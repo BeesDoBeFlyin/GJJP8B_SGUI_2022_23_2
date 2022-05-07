@@ -61,6 +61,15 @@ namespace GJJP8B_HFT_2021221.Endpoint
             cheeseLogic.ChangePrice(id, price);
         }
 
+        [Route("EditAll/{id}/{name}-{price}-{milkId}")]
+        [HttpPut("editAll")]
+        public void EditCheese(Cheese cheese)
+        {
+            cheeseLogic.ChangeCheeseName(cheese.Id, cheese.Name);
+            cheeseLogic.ChangePrice(cheese.Id, cheese.Price);
+            cheeseLogic.ChangeMilk(cheese.Id, cheese.MilkId);
+        }
+
         [Route("UnderPrice/{price}")]
         [HttpGet]
         public IEnumerable<Cheese> GetCheesesUnderPrce(float price)
