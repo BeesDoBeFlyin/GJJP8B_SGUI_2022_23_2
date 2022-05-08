@@ -13,72 +13,47 @@ namespace GJJP8B_HFT_2021221.Endpoint
     [ApiController]
     public class BuyerController : ControllerBase
     {
-        private IBuyerLogic buyerLogic;
-        private readonly IHubContext<SignalRHub> hub;
+        IBuyerLogic buyerLogic;
+        IHubContext<SignalRHub> hub;
 
-        public BuyerController(IBuyerLogic buyerLogic, IHubContext<SignalRHub> hub)
+        public BuyerController(IBuyerLogic logic, IHubContext<SignalRHub> hub)
         {
-            this.buyerLogic = buyerLogic;
+            this.buyerLogic = logic;
             this.hub = hub;
         }
 
         [HttpGet]
         public IEnumerable<Buyer> ReadAll()
         {
-            return buyerLogic.GetAll();
+            return this.buyerLogic.GetAll();
         }
 
-        [Route("Read/{id}")]
-        [HttpGet]
+        [HttpGet("{id}")]
         public Buyer Read(int id)
         {
-            return buyerLogic.GetBuyerById(id);
+            return this.buyerLogic.GetOne(id);
         }
 
-        [Route("Create/{newBuyer}")]
         [HttpPost]
-        public void Create(Buyer newBuyer)
+        public void Create([FromBody] Buyer buyer)
         {
-            buyerLogic.AddBuyer(newBuyer);
-            hub.Clients.All.SendAsync("BuyerCreated", newBuyer);
+            this.buyerLogic.Create(buyer);
+            this.hub.Clients.All.SendAsync("BuyerCreated", buyer);
         }
 
-        [Route("ChangeBuyerName/{id}/{newName}")]
         [HttpPut]
-        public void ChangeBuyerName(int id, string newName)
+        public void Put([FromBody] Buyer buyer)
         {
-            buyerLogic.ChangeBuyerName(id, newName);
+            this.buyerLogic.Update(buyer);
+            this.hub.Clients.All.SendAsync("BuyerUpdated", buyer);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Buyer buyerToDelete = buyerLogic.GetBuyerById(id);
-            buyerLogic.DeleteBuyerById(id);
-            hub.Clients.All.SendAsync("CheeseDeleted", buyerToDelete);
-        }
-
-        [Route("ChangeMoney/{id}/{price}")]
-        [HttpPut]
-        public void ChangeMoney(int id, float price)//for the sake of consistency, the new money is called price as well
-        {
-            buyerLogic.ChangeMoney(id, price);
-        }
-
-        [Route("ChangeCheeseId/{id}/{cheeseId}")]
-        [HttpPut]
-        public void ChangePreferredCheesee(int id, int cheeseeId)
-        {
-            buyerLogic.ChangePreferredCheese(id, cheeseeId);
-        }
-
-        [Route("EditAll/{id}/{name}-{money}-{cheeseId}")]
-        [HttpPut("editAll")]
-        public void EditBuyer(Buyer buyer)
-        {
-            buyerLogic.ChangeBuyerName(buyer.Id, buyer.Name);
-            buyerLogic.ChangeMoney(buyer.Id, buyer.Money);
-            buyerLogic.ChangePreferredCheese(buyer.Id, buyer.CheeseId);
+            var buyerToDelete = this.buyerLogic.GetOne(id);
+            this.buyerLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("BuyerDeleted", buyerToDelete);
         }
 
         [Route("CanAffordGivenCheese/{id}/{cheeseid}")]

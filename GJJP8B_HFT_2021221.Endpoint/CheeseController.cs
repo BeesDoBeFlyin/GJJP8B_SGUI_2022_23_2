@@ -2,11 +2,8 @@
 using GJJP8B_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GJJP8B_HFT_2021221.Endpoint
 {
@@ -14,66 +11,47 @@ namespace GJJP8B_HFT_2021221.Endpoint
     [ApiController]
     public class CheeseController : ControllerBase
     {
-        private ICheeseLogic cheeseLogic;
-        private readonly IHubContext<SignalRHub> hub;
+        ICheeseLogic cheeseLogic;
+        IHubContext<SignalRHub> hub;
 
-        public CheeseController(ICheeseLogic cheeseLogic, IHubContext<SignalRHub> hub)
+        public CheeseController(ICheeseLogic logic, IHubContext<SignalRHub> hub)
         {
-            this.cheeseLogic = cheeseLogic;
+            this.cheeseLogic = logic;
             this.hub = hub;
         }
 
         [HttpGet]
         public IEnumerable<Cheese> ReadAll()
         {
-            return cheeseLogic.GetAll();
+            return this.cheeseLogic.GetAll();
         }
 
-        [Route("Read/{id}")]
-        [HttpGet]
+        [HttpGet("{id}")]
         public Cheese Read(int id)
         {
-            return cheeseLogic.GetCheeseById(id);
+            return this.cheeseLogic.GetOne(id);
         }
 
-        [Route("Create/{newCheese}")]
         [HttpPost]
-        public void Create(Cheese newCheese)
+        public void Create([FromBody] Cheese cheese)
         {
-            cheeseLogic.AddCheese(newCheese);
-            hub.Clients.All.SendAsync("CheeseCreated", newCheese);
+            this.cheeseLogic.Create(cheese);
+            this.hub.Clients.All.SendAsync("CheeseCreated", cheese);
         }
 
-        [Route("ChangeCheeseName/{id}/{newName}")]
         [HttpPut]
-        public void ChangeCheeseName(int id, string newName)
+        public void Put([FromBody] Cheese cheese)
         {
-            cheeseLogic.ChangeCheeseName(id, newName);
+            this.cheeseLogic.Update(cheese);
+            this.hub.Clients.All.SendAsync("CheeseUpdated", cheese);
         }
 
-        [Route("{id}")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Cheese cheeseToDelete = cheeseLogic.GetCheeseById(id);
-            cheeseLogic.DeleteCheeseById(id);
-            hub.Clients.All.SendAsync("CheeseDeleted", cheeseToDelete);
-        }
-
-        [Route("ChangePrice/{id}/{price}")]
-        [HttpPut]
-        public void ChangePrice(int id, float price)
-        {
-            cheeseLogic.ChangePrice(id, price);
-        }
-
-        [Route("EditAll/{id}/{name}-{price}-{milkId}")]
-        [HttpPut("editAll")]
-        public void EditCheese(Cheese cheese)
-        {
-            cheeseLogic.ChangeCheeseName(cheese.Id, cheese.Name);
-            cheeseLogic.ChangePrice(cheese.Id, cheese.Price);
-            cheeseLogic.ChangeMilk(cheese.Id, cheese.MilkId);
+            var cheeseToDelete = this.cheeseLogic.GetOne(id);
+            this.cheeseLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("CheeseDeleted", cheeseToDelete);
         }
 
         [Route("UnderPrice/{price}")]
