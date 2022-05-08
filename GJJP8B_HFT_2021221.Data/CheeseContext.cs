@@ -12,9 +12,9 @@ namespace GJJP8B_HFT_2021221.Data
         public DbSet<Buyer> Buyers { get; set; }
 
         
-        public CheeseContext(DbContextOptions<CheeseContext> options) : base(options)
+        public CheeseContext()
         {
-           Database.EnsureCreated();
+           this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
