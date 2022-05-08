@@ -10,53 +10,38 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public class BuyerLogic : IBuyerLogic
     {
-        private IBuyerRepository repository;
-        private ICheeseRepository cheeseRepo;
+        private IRepository<Buyer> repository;
+        private IRepository<Cheese> cheeseRepo;
 
-        public BuyerLogic(IBuyerRepository buyerRepository, ICheeseRepository cheeseRepostory)
+        public BuyerLogic(IRepository<Buyer> buyerRepository, IRepository<Cheese> cheeseRepository)
         {
-            repository = buyerRepository;
-            cheeseRepo = cheeseRepostory;
+            this.repository = buyerRepository;
+            this.cheeseRepo = cheeseRepository;
         }
 
-        public Buyer GetBuyerById(int id)
+        public void Create(Buyer buyer)
         {
-            return repository.ReturnOne(id);
+            this.repository.Create(buyer);
         }
 
-        public void AddBuyer(Buyer buy)
+        public void Delete(int id)
         {
-            repository.Insert(buy);
+            this.repository.Delete(id);
+        }
+
+        public Buyer GetOne(int id)
+        {
+            return this.repository.ReturnOne(id);
         }
 
         public IQueryable<Buyer> GetAll()
         {
-            return repository.ReturnAll();
+            return this.repository.ReturnAll();
         }
 
-        public void ChangeBuyerName(int id, string newName)
+        public void Update(Buyer buyer)
         {
-            repository.ChangeName(id, newName);
-        }
-
-        public void DeleteBuyerById(int id)
-        {
-            repository.Delete(id);
-        }
-
-        public void ChangeMoney(int id, float newMoney)
-        {
-            repository.ChangeMoney(id, newMoney);
-        }
-
-        public void ChangePreferredCheese(int id, int newCheeseId)
-        {
-            repository.ChangePreferredCheese(id, newCheeseId);
-        }
-
-        public float ReturnMoney(int id)
-        {
-            return repository.ReturnOne(id).Money;
+            this.repository.Update(buyer);
         }
 
         public bool CanAffordGivenCheese(int id, int cheeseid)

@@ -11,53 +11,38 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public class CheeseLogic : ICheeseLogic
     { 
-        private ICheeseRepository repository;
-        private IMilkRepository milkRepo;
+        private IRepository<Cheese> repository;
+        private IRepository<Milk> milkRepo;
 
-        public CheeseLogic(ICheeseRepository cheeseRepository, IMilkRepository milkRepository)
+        public CheeseLogic(IRepository<Cheese> cheeseRepository, IRepository<Milk> milkRepository)
         {
             this.repository = cheeseRepository;
             this.milkRepo = milkRepository;
         }
 
-        public Cheese GetCheeseById(int id)
+        public void Create(Cheese cheese)
         {
-            return repository.ReturnOne(id);
+            this.repository.Create(cheese);
         }
 
-        public void AddCheese(Cheese ch)
+        public void Delete(int id)
         {
-            repository.Insert(ch);
+            this.repository.Delete(id);
+        }
+
+        public Cheese GetOne(int id)
+        {
+            return this.repository.ReturnOne(id);
         }
 
         public IQueryable<Cheese> GetAll()
         {
-            return repository.ReturnAll();
+            return this.repository.ReturnAll();
         }
 
-        public void ChangeCheeseName(int id, string newName)
+        public void Update(Cheese cheese)
         {
-            repository.ChangeName(id, newName);
-        }
-
-        public void DeleteCheeseById(int id)
-        {
-            repository.Delete(id);
-        }
-
-        public void ChangePrice(int id, float newPrice)
-        {
-            repository.ChangePrice(id, newPrice);
-        }
-
-        public void ChangeMilk(int id, int newMilkId)
-        {
-            repository.ChangeMilk(id, newMilkId);
-        }
-
-        public float ReturnPrice(int id)
-        {
-            return repository.ReturnOne(id).Price;
+            this.repository.Update(cheese);
         }
 
         public IEnumerable<Cheese> CheesesUnderPrice(float price)

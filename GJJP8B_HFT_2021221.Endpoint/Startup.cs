@@ -1,6 +1,7 @@
 using GJJP8B_HFT_2021221.Data;
 using GJJP8B_HFT_2021221.Logic;
 using GJJP8B_HFT_2021221.Repository;
+using GJJP8B_HFT_2021221.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,17 +16,18 @@ namespace GJJP8B_HFT_2021221.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddScoped<CheeseContext>();
+
+            services.AddScoped<IRepository<Milk>, MilkRepository>();
+            services.AddScoped<IRepository<Cheese>, CheeseRepository>();
+            services.AddScoped<IRepository<Buyer>, BuyerRepository>();
+
             services.AddScoped<IMilkLogic, MilkLogic>();
             services.AddScoped<ICheeseLogic, CheeseLogic>();
             services.AddScoped<IBuyerLogic, BuyerLogic>();
 
-            services.AddScoped<IMilkRepository, MilkRepository>();
-            services.AddScoped<ICheeseRepository, CheeseRepository>();
-            services.AddScoped<IBuyerRepository, BuyerRepository>();
-            services.AddDbContext<CheeseContext>();
-
             services.AddSignalR();
+            services.AddControllers();
         }
 
         

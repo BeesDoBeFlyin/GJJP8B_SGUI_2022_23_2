@@ -65,62 +65,40 @@ namespace GJJP8B_HFT_2021221.Test
         public void SetUp()
         {
             //I regret separating testing for the different models
-            Mock<IMilkRepository> mockedMilkRepository = new();
+            Mock<IRepository<Milk>> mockedMilkRepository = new();
             mockedMilkRepository.Setup(x => x.ReturnOne(It.IsAny<int>())).Returns<int>((id) => FakeMilks().FirstOrDefault(x => x.Id == id));
-            mockedMilkRepository.Setup(x => x.ChangeName(It.IsNotIn<int>(1, 2), It.IsAny<string>())).Throws(new Exception());
             mockedMilkRepository.Setup(x => x.ReturnAll()).Returns(FakeMilks());
 
             this.MLogic = new MilkLogic(mockedMilkRepository.Object);
 
-            Mock<ICheeseRepository> mockedCheeseRepository = new();
-            mockedCheeseRepository.Setup(x => x.ReturnOne(It.IsAny<int>())).Returns<int>((id) => FakeCheeses().FirstOrDefault(x => x.Id == id));
-            mockedCheeseRepository.Setup(x => x.ChangeName(It.IsNotIn<int>(1, 2), It.IsAny<string>())).Throws(new Exception());
-            mockedCheeseRepository.Setup(x => x.ReturnAll()).Returns(FakeCheeses());
+            Mock<IRepository<Cheese>> mockedCheeseRepository = new();
+            mockedCheeseRepository.Setup(x => x.ReturnOne(It.IsAny<int>())).Returns<int>((id) => FakeCheeses().FirstOrDefault(x => x.Id == id));            mockedCheeseRepository.Setup(x => x.ReturnAll()).Returns(FakeCheeses());
 
             this.BLogic = new CheeseLogic(mockedCheeseRepository.Object, mockedMilkRepository.Object);
 
-            Mock<IBuyerRepository> mockedBuyerRepository = new();
-            mockedBuyerRepository.Setup(x => x.ReturnOne(It.IsAny<int>())).Returns<int>((id) => FakeBuyers().FirstOrDefault(x => x.Id == id));
-            mockedBuyerRepository.Setup(x => x.ChangeName(It.IsNotIn<int>(1, 2), It.IsAny<string>())).Throws(new Exception());
-            mockedBuyerRepository.Setup(x => x.ReturnAll()).Returns(FakeBuyers());
+            Mock<IRepository<Buyer>> mockedBuyerRepository = new();
+            mockedBuyerRepository.Setup(x => x.ReturnOne(It.IsAny<int>())).Returns<int>((id) => FakeBuyers().FirstOrDefault(x => x.Id == id));            mockedBuyerRepository.Setup(x => x.ReturnAll()).Returns(FakeBuyers());
 
             this.ILogic = new BuyerLogic(mockedBuyerRepository.Object, mockedCheeseRepository.Object);
         }
 
         [Test]
-        public void ReturnBuyerMoneyTest()
+        public void GetOneBuyerTest()
         {
-            float test = ILogic.ReturnMoney(1);
+            Buyer test = ILogic.GetOne(1);
 
-            float expectedResult = 7500;
+            Buyer expectedResult = new() { Id = 1, Name = "Mutter", Money = 7500, CheeseId = 1, CheeseVirtual = new Cheese() };
 
             Assert.AreEqual(expectedResult, test);
         }
 
         [Test]
-        public void GetBuyerByIdTest()
+        public void UpdateBuyerTest()
         {
-            Buyer test = ILogic.GetBuyerById(1);
-
-            Buyer expectedResult = new Buyer() { Id = 1, Name = "Mutter", Money = 7500, CheeseId = 1, CheeseVirtual = new Cheese() };
-
-            Assert.IsTrue(test.Id == expectedResult.Id);
-            Assert.IsTrue(test.Name == expectedResult.Name);
-            Assert.IsTrue(test.Money == expectedResult.Money);
-        }
-
-        [Test]
-        public void ChangeBuyerNameTest()
-        {
-            Assert.Throws(typeof(Exception), () => ILogic.ChangeBuyerName(69, "There is no Milk with such ID!"));
-            Assert.DoesNotThrow(() => ILogic.ChangeBuyerName(1, "Is of workings!"));
-        }
-
-        [Test]
-        public void ChangeBuyerMoneyTest()
-        {
-            //Assert.Throws(typeof(InvalidOperationException), () => ILogic.ChangePrice(70, 500f)); this is embarrassing but no idea why this doesn't throw an error
-            Assert.DoesNotThrow(() => ILogic.ChangeMoney(1, 500f));
+            Buyer bTest = new() { Id = 69, Name = "Mutter", Money = 7500, CheeseId = 1, CheeseVirtual = new Cheese() };
+            Assert.Throws(typeof(Exception), () => ILogic.Update(bTest));
+            Buyer bTest2 = new() { Id = 1, Name = "Mutter", Money = 7500, CheeseId = 1, CheeseVirtual = new Cheese() };
+            Assert.DoesNotThrow(() => ILogic.Update(bTest2));
         }
 
         [Test]

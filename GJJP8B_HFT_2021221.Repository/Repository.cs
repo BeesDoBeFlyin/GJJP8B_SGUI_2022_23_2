@@ -10,24 +10,31 @@ namespace GJJP8B_HFT_2021221.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        private CheeseContext context;
+        public CheeseContext context;
 
         public Repository(CheeseContext context)
         {
             this.context = context;
         }
 
-        public abstract void Delete(int id);
-
-        public abstract void Insert(T entity);
+        public void Create(T entity)
+        {
+            this.context.Set<T>().Add(entity);
+            this.context.SaveChanges();
+        }
 
         public IQueryable<T> ReturnAll()
         {
             return this.context.Set<T>();
         }
 
-        protected CheeseContext Context { get => this.context; set => this.context = value; }
+        public void Delete(int id)
+        {
+            this.context.Set<T>().Remove(ReturnOne(id));
+            this.context.SaveChanges();
+        }
 
         public abstract T ReturnOne(int id);
+        public abstract void Update(T entity);
     }
 }

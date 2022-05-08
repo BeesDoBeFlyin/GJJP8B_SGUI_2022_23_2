@@ -13,64 +13,47 @@ namespace GJJP8B_HFT_2021221.Endpoint
     [ApiController]
     public class MilkController : ControllerBase
     {
-        private IMilkLogic milkLogic;
-        private readonly IHubContext<SignalRHub> hub;
+        IMilkLogic milkLogic;
+        IHubContext<SignalRHub> hub;
 
-        public MilkController(IMilkLogic milkLogic, IHubContext<SignalRHub> hub)
+        public MilkController(IMilkLogic logic, IHubContext<SignalRHub> hub)
         {
-            this.milkLogic = milkLogic;
+            this.milkLogic = logic;
             this.hub = hub;
         }
 
         [HttpGet]
         public IEnumerable<Milk> ReadAll()
         {
-            return milkLogic.GetAll();
+            return this.milkLogic.GetAll();
         }
 
-        [Route("Read/{id}")]
-        [HttpGet]
+        [HttpGet("{id}")]
         public Milk Read(int id)
         {
-            return milkLogic.GetMilkById(id);
+            return this.milkLogic.GetOne(id);
         }
 
-        [Route("Create/{newMilk}")]
         [HttpPost]
-        public void Create(Milk newMilk)
+        public void Create([FromBody] Milk milk)
         {
-            milkLogic.AddMilk(newMilk);
-            hub.Clients.All.SendAsync("MilkCreated", newMilk);
+            this.milkLogic.Create(milk);
+            this.hub.Clients.All.SendAsync("MilkCreated", milk);
         }
 
-        [Route("ChangeMilkName/{id}/{name}")]
         [HttpPut]
-        public void ChangeMilkName(int id, string newName)
+        public void Put([FromBody] Milk milk)
         {
-            milkLogic.ChangeMilkName(id, newName);
+            this.milkLogic.Update(milk);
+            this.hub.Clients.All.SendAsync("MilkUpdated", milk);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Milk milkToDelete = milkLogic.GetMilkById(id);
-            milkLogic.DeleteMilkById(id);
-            hub.Clients.All.SendAsync("CheeseDeleted", milkToDelete);
-        }
-
-        [Route("ChangePrice/{id}/{price}")]
-        [HttpPut]
-        public void ChangePrice(int id, float price)
-        {
-            milkLogic.ChangePrice(id, price);
-        }
-
-        [Route("EditAll/{id}/{name}-{price}")]
-        [HttpPut("editAll")]
-        public void EditMilk(Milk milk)
-        {
-            milkLogic.ChangeMilkName(milk.Id, milk.Name);
-            milkLogic.ChangePrice(milk.Id, milk.Price);
+            var milkToDelete = this.milkLogic.GetOne(id);
+            this.milkLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("MilkDeleted", milkToDelete);
         }
 
         [Route("UnderPrice/{price}")]
