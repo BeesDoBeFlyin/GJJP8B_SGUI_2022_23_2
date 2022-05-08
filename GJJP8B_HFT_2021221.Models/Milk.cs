@@ -13,7 +13,7 @@ namespace GJJP8B_HFT_2021221.Models
     //[Table("milks")]
     public class Milk
     {
-        //[Key]
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [MaxLength(35)]
