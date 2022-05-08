@@ -51,7 +51,8 @@ namespace GJJP8B_HFT_2021221.Endpoint
             cheeseLogic.ChangeCheeseName(id, newName);
         }
 
-        [HttpDelete("{id}")]
+        [Route("{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
             Cheese cheeseToDelete = cheeseLogic.GetCheeseById(id);

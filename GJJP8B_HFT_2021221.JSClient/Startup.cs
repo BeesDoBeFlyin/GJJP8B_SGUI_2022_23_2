@@ -1,13 +1,14 @@
-using GJJP8B_HFT_2021221.Data;
-using GJJP8B_HFT_2021221.Logic;
-using GJJP8B_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace GJJP8B_HFT_2021221.Endpoint
+namespace GJJP8B_HFT_2021221.JSClient
 {
     public class Startup
     {
@@ -15,20 +16,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddScoped<IMilkLogic, MilkLogic>();
-            services.AddScoped<ICheeseLogic, CheeseLogic>();
-            services.AddScoped<IBuyerLogic, BuyerLogic>();
-
-            services.AddScoped<IMilkRepository, MilkRepository>();
-            services.AddScoped<ICheeseRepository, CheeseRepository>();
-            services.AddScoped<IBuyerRepository, BuyerRepository>();
-            services.AddDbContext<CheeseContext>();
-
-            services.AddSignalR();
         }
-
-        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,16 +28,14 @@ namespace GJJP8B_HFT_2021221.Endpoint
 
             app.UseRouting();
 
-            app.UseCors(x => x
-            .AllowCredentials()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .WithOrigins("http://localhost:8281"));
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-                endpoints.MapHub<SignalRHub>("/hub");
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("Hello World!");
+                });
             });
         }
     }

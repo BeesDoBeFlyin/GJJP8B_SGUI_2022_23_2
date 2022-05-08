@@ -9,7 +9,7 @@ namespace GJJP8B_HFT_2021221.Models
     //[Table("buyers")]
     public class Buyer
     {
-        //[Key]
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public String Name { get; set; }
