@@ -16,7 +16,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "milk")
+        public RestService(string baseurl, string pingableEndpoint = "cheese")
         {
             bool isOk = false;
             do
@@ -158,7 +158,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public async Task PostAsync<T>(T item, string endpoint)
         {
             HttpResponseMessage response =
-                await client.PostAsJsonAsync(endpoint + "/Create/", item);
+                await client.PostAsJsonAsync(endpoint, item);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -184,7 +184,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public async Task DeleteAsync(int id, string endpoint)
         {
             HttpResponseMessage response =
-                await client.DeleteAsync(endpoint + "/Delete/" + id.ToString());
+                await client.DeleteAsync(endpoint + "/" + id.ToString());
 
             if (!response.IsSuccessStatusCode)
             {
@@ -198,7 +198,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
-                client.DeleteAsync(endpoint + "/Delete/" + id.ToString()).GetAwaiter().GetResult();
+                client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
 
             if (!response.IsSuccessStatusCode)
             {
@@ -353,7 +353,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
             }
             else
             {
-                this.rest.PostAsync(item, $"{typeof(T).Name}/Create").ContinueWith((t) =>
+                this.rest.PostAsync(item, typeof(T).Name).ContinueWith((t) =>
                 {
                     Init().ContinueWith(z =>
                     {
@@ -375,7 +375,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
             }
             else
             {
-                this.rest.PutAsync(item, $"{typeof(T).Name}/editAll").ContinueWith((t) =>
+                this.rest.PutAsync(item, typeof(T).Name).ContinueWith((t) =>
                 {
                     Init().ContinueWith(z =>
                     {
@@ -396,7 +396,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
             }
             else
             {
-                this.rest.DeleteAsync(id, $"{typeof(T).Name}/Delete").ContinueWith((t) =>
+                this.rest.DeleteAsync(id, typeof(T).Name).ContinueWith((t) =>
                 {
                     Init().ContinueWith(z =>
                     {
