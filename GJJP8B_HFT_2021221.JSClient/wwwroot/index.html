@@ -11,6 +11,10 @@
     <div id="formdiv">
         <label>Cheese Name</label>
         <input type="text" id="cheesename" />
+        <label>Cheese Price</label>
+        <input type="number" id="cheeseprice" />
+        <label>Cheese MilkId</label>
+        <input type="text" id="cheesemilkid" />
         <button type="button" onclick="createCheese()">Add cheese</button>
     </div>
 
@@ -19,11 +23,65 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Price</th>
+                <th>MilkId</th>
+                <th>Actions</th>
             </tr>
         </thread>
-        <tbody id="results">
+        <tbody id="resultsCheese">
         </tbody>
     </table>
+
+
+    <h1>Milk</h1>
+
+    <div id="formdiv">
+        <label>Milk Name</label>
+        <input type="text" id="cheesename" />
+        <label>Milk Price</label>
+        <input type="number" id="cheeseprice" />
+        <button type="button" onclick="createMilk()">Add milk</button>
+    </div>
+
+    <table>
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thread>
+        <tbody id="resultsMilk">
+        </tbody>
+    </table>
+
+    <h1>Buyer</h1>
+
+    <div id="formdiv">
+        <label>Buyer Name</label>
+        <input type="text" id="buyername" />
+        <label>Buyer Money</label>
+        <input type="number" id="buyerprice" />
+        <label>Buyer Preferred cheese ID</label>
+        <input type="number" id="buyercheeseId" />
+        <button type="button" onclick="createBuyer()">Add buyer</button>
+    </div>
+
+    <table>
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Money</th>
+                <th>CheeseId</th>
+                <th>Actions</th>
+            </tr>
+        </thread>
+        <tbody id="resultsBuyer">
+        </tbody>
+    </table>
+
     <script src="script.js">
 
     </script>

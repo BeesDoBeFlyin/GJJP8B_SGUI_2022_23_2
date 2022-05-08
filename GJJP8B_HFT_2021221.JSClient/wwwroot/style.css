@@ -21,9 +21,14 @@ th{
     margin-bottom: 20px;
 }
 
-#formdiv label, button, input{
-    margin: 10px;
-    padding: 5px;
+#formdiv label, input{
+    margin: 2px;
+    padding: 7px;
+}
+
+#formdiv button{
+    margin-top: 15px;
+    padding:7px;
 }
 
 #formdiv label{
