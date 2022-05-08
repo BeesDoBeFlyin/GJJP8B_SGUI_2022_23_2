@@ -12,7 +12,8 @@ namespace GJJP8B_HFT_2021221.Repository
 
         IQueryable<T> ReturnAll();
 
-        void Insert(T entity);
+        void Create(T entity);
+        void Update(T entity);
 
         void Delete(int id);
     }

@@ -8,62 +8,33 @@ using GJJP8B_HFT_2021221.Models;
 
 namespace GJJP8B_HFT_2021221.Repository
 {
-    public class BuyerRepository : Repository<Buyer>, IBuyerRepository
+    public class BuyerRepository : Repository<Buyer>, IRepository<Buyer>
     {
         public BuyerRepository(CheeseContext context) : base(context)
         {
 
         }
 
-        public void ChangeMoney(int id, float newMoney)
-        {
-            var buyer = this.ReturnOne(id);
-            if (buyer == null)
-            {
-                throw new InvalidOperationException("There is no data with the given id!");
-            }
-            buyer.Money = newMoney;
-            this.Context.SaveChanges();
-        }
-
-        public void ChangeName(int id, string newName)
-        {
-            var buyer = this.ReturnOne(id);
-            if (buyer == null)
-            {
-                throw new InvalidOperationException("There is no data with the given id!");
-            }
-            buyer.Name = newName;
-            this.Context.SaveChanges();
-        }
-
-        public void ChangePreferredCheese(int id, int newCheeseId)
-        {
-            var buyer = this.ReturnOne(id);
-            if (buyer == null)
-            {
-                throw new InvalidOperationException("There is no data with the given id!");
-            }
-            buyer.CheeseId = newCheeseId;
-            this.Context.SaveChanges();
-        }
-
-        public override void Delete(int id)
-        {
-            Buyer obj = this.ReturnOne(id);
-            this.Context.Set<Buyer>().Remove(obj);
-            this.Context.SaveChanges();
-        }
-
-        public override void Insert(Buyer entity)
-        {
-            this.Context.Set<Buyer>().Add(entity);
-            this.Context.SaveChanges();
-        }
-
         public override Buyer ReturnOne(int id)
         {
-            return this.ReturnAll().FirstOrDefault(x => x.Id == id);
+            return context.Buyers.FirstOrDefault(x => x.Id == id);
+        }
+
+        public override void Update(Buyer buyer)
+        {
+            var old = ReturnOne(buyer.Id);
+            if (old == null)
+            {
+                throw new ArgumentException("Item doesn't exist");
+            }
+            foreach (var item in old.GetType().GetProperties())
+            {
+                if (item.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    item.SetValue(old, item.GetValue(buyer));
+                }
+            }
+            context.SaveChanges();
         }
     }
 }

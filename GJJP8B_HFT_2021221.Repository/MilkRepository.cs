@@ -1,60 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GJJP8B_HFT_2021221.Data;
+﻿using GJJP8B_HFT_2021221.Data;
 using GJJP8B_HFT_2021221.Models;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace GJJP8B_HFT_2021221.Repository
 {
-    public class MilkRepository : Repository<Milk>, IMilkRepository
+    public class MilkRepository : Repository<Milk>, IRepository<Milk>
     {
         public MilkRepository(CheeseContext context) : base(context)
         {
 
         }
 
-        public void ChangeName(int id, string newName)
-        {
-            var milk = this.ReturnOne(id);
-            if (milk == null)
-            {
-                throw new InvalidOperationException("There is no record with the given id!");
-            }
-            milk.Name = newName;
-            this.Context.SaveChanges();
-        }
-
-        public void ChangePrice(int id, float newPrice)
-        {
-            var milk = this.ReturnOne(id);
-            if (milk == null)
-            {
-                throw new InvalidOperationException("There is no record with the given id!");
-            }
-
-            milk.Price = newPrice;
-            this.Context.SaveChanges();
-        }
-
-        public override void Delete(int id)
-        {
-            Milk obj = this.ReturnOne(id);
-            this.Context.Set<Milk>().Remove(obj);
-            this.Context.SaveChanges();
-        }
-
-        public override void Insert(Milk entity)
-        {
-            this.Context.Set<Milk>().Add(entity);
-            this.Context.SaveChanges();
-        }
-
         public override Milk ReturnOne(int id)
         {
-            return this.ReturnAll().FirstOrDefault(x => x.Id == id);
+            return context.Milks.FirstOrDefault(x => x.Id == id);
+        }
+
+        public override void Update(Milk milk)
+        {
+            var old = ReturnOne(milk.Id);
+            if (old == null)
+            {
+                throw new ArgumentException("Item doesn't exist");
+            }
+            foreach (var item in old.GetType().GetProperties())
+            {
+                if (item.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    item.SetValue(old, item.GetValue(milk));
+                }
+            }
+            context.SaveChanges();
         }
     }
 }
