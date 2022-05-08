@@ -8,47 +8,36 @@ namespace GJJP8B_HFT_2021221.Logic
 {
     public class MilkLogic : IMilkLogic
     {
-        private IMilkRepository repository;
+        private IRepository<Milk> repository;
 
-
-        public MilkLogic(IMilkRepository milkRepository)
+        public MilkLogic(IRepository<Milk> milkRepository)
         {
-            this.repository=milkRepository;
+            this.repository = milkRepository;
         }
 
-        public Milk GetMilkById(int id)
+        public void Create(Milk milk)
         {
-           return repository.ReturnOne(id);
+            this.repository.Create(milk);
         }
 
-        public void AddMilk(Milk mk)
+        public void Delete(int id)
         {
-            repository.Insert(mk);
+            this.repository.Delete(id);
+        }
+
+        public Milk GetOne(int id)
+        {
+            return this.repository.ReturnOne(id);
         }
 
         public IQueryable<Milk> GetAll()
         {
-            return repository.ReturnAll();
+            return this.repository.ReturnAll();
         }
 
-        public void ChangeMilkName(int id, string newName)
+        public void Update(Milk milk)
         {
-            repository.ChangeName(id, newName);
-        }
-
-        public void DeleteMilkById(int id)
-        {
-            repository.Delete(id);
-        }
-
-        public void ChangePrice(int id, float newPrice)
-        {
-            repository.ChangePrice(id, newPrice);
-        }
-
-        public float ReturnPrice(int id)
-        {
-            return repository.ReturnOne(id).Price;
+            this.repository.Update(milk);
         }
 
         public IEnumerable<Milk> MilksUnderPrice(float price)
