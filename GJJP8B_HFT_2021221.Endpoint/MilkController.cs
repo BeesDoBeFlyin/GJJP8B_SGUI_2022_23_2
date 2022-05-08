@@ -16,7 +16,7 @@ namespace GJJP8B_HFT_2021221.Endpoint
         IMilkLogic milkLogic;
         IHubContext<SignalRHub> hub;
 
-        public MilkController(ICheeseLogic logic, IHubContext<SignalRHub> hub)
+        public MilkController(IMilkLogic logic, IHubContext<SignalRHub> hub)
         {
             this.milkLogic = logic;
             this.hub = hub;
