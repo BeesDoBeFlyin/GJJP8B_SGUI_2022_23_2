@@ -15,27 +15,27 @@ function setupSignalR() {
         .build();
 
     connection.on("CheeseCreated", (user, message) => {
-        getdata();
+        getdataCheese();
     });
 
     connection.on("CheeseDeleted", (user, message) => {
-        getdata();
+        getdataCheese();
     });
 
     connection.on("MilkCreated", (user, message) => {
-        getdata();
+        getdataMilk();
     });
 
     connection.on("MilkDeleted", (user, message) => {
-        getdata();
+        getdataMilk();
     });
 
     connection.on("BuyerCreated", (user, message) => {
-        getdata();
+        getdataBuyer();
     });
 
     connection.on("BuyerDeleted", (user, message) => {
-        getdata();
+        getdataBuyer();
     });
 
     connection.onclose(async () => {
@@ -92,8 +92,8 @@ function displayCheese() {
             "</td><td>" + t.name +
             "</td><td>" + t.price +
             "</td><td>" + t.milkId +
-            "</td><td>" + '<button type="button" onclick="removeCheese(${t.id})">Delete</button>' +
-            " " + '<button type="button" onclick="updateCheese($"t.id})">Update</button>' +
+            "</td><td>" + `<button type="button" onclick="removeCheese(${t.id})">Delete</button>` +
+            " " + `<button type="button" onclick="updateCheese(${t.id})">Update</button>` +
             "</td></tr>";
     })
 }
@@ -105,8 +105,8 @@ function displayMilk() {
             "<tr><td>" + t.id +
             "</td><td>" + t.name +
             "</td><td>" + t.price +
-            "</td><td>" + '<button type="button" onclick="removeMilk(${t.id})">Delete</button>' +
-            " " + '<button type="button" onclick="updateMilk($"t.id})">Update</button>' +
+            "</td><td>" + `<button type="button" onclick="removeMilk(${t.id})">Delete</button>` +
+            " " + `<button type="button" onclick="updateMilk(${t.id})">Update</button>` +
             "</td></tr>";
     })
 }
@@ -119,14 +119,14 @@ function displayBuyer() {
             "</td><td>" + t.name +
             "</td><td>" + t.money +
             "</td><td>" + t.cheeseId +
-            "</td><td>" + '<button type="button" onclick="removeBuyer(${t.id})">Delete</button>' +
-            " " + '<button type="button" onclick="updateBuyer($"t.id})">Update</button>' +
+            "</td><td>" + `<button type="button" onclick="removeBuyer(${t.id})">Delete</button>` +
+            " " + `<button type="button" onclick="updateBuyer(${t.id})">Update</button>` +
             "</td></tr>";
     })
 }
 
 function removeCheese(id) {
-    feetch('http://localhost:37371/cheese/' + id, {
+    fetch('http://localhost:37371/cheese/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
@@ -134,13 +134,13 @@ function removeCheese(id) {
         .then(response => response)
         .then(data => {
             console.log('Success: ', data);
-            getdata();
+            getdataCheese();
         })
         .catch((error) => { console.error('Error: ', error); });
 }
 
 function removeMilk(id) {
-    feetch('http://localhost:37371/milk/' + id, {
+    fetch('http://localhost:37371/milk/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
@@ -148,13 +148,13 @@ function removeMilk(id) {
         .then(response => response)
         .then(data => {
             console.log('Success: ', data);
-            getdata();
+            getdataMilk();
         })
         .catch((error) => { console.error('Error: ', error); });
 }
 
 function removeBuyer(id) {
-    feetch('http://localhost:37371/buyer/' + id, {
+    fetch('http://localhost:37371/buyer/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
@@ -162,7 +162,7 @@ function removeBuyer(id) {
         .then(response => response)
         .then(data => {
             console.log('Success: ', data);
-            getdata();
+            getdataBuyer();
         })
         .catch((error) => { console.error('Error: ', error); });
 }
@@ -175,12 +175,12 @@ function updateCheese(id) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { cheeseName: name, cheesePrice: price, cheeseMilkId: milkid }),
+            { name: name, price: price, milkId: milkid }),
     })
         .then(response => response)
         .then(data => {
             console.log('Success: ', data);
-            getdata();
+            getdataCheese();
         })
         .catch((error) => { console.error('Error: ', error); });
 }
@@ -192,12 +192,12 @@ function updateMilk(id) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { milkName: name, milkPrice: price, }),
+            { name: name, price: price, }),
     })
         .then(response => response)
         .then(data => {
             console.log('Success: ', data);
-            getdata();
+            getdataMilk();
         })
         .catch((error) => { console.error('Error: ', error); });
 }
@@ -210,12 +210,12 @@ function updateBuyer(id) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { buyerName: name, buyerMoney: money, buyerCheeseId: cheeseid }),
+            { name: name, money: money, cheeseId: cheeseid }),
     })
         .then(response => response)
         .then(data => {
             console.log('Success: ', data);
-            getdata();
+            getdataBuyer();
         })
         .catch((error) => { console.error('Error: ', error); });
 }
@@ -228,7 +228,7 @@ function createCheese() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { cheeseName: name, cheesePrice: price, cheeseMilkId: milkid }),
+            { name: name, price: price, milkid: milkid }),
     })
         .then(response => response)
         .then(data => {
@@ -245,7 +245,7 @@ function createMilk() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { milkName: name, milkPrice: price, }),
+            { name: name, price: price, }),
     })
         .then(response => response)
         .then(data => {
@@ -263,7 +263,7 @@ function createBuyer() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { buyerName: name, buyerMoney: money, buyerCheeseId: cheeseid }),
+            { name: name, money: money, cheeseId: cheeseid }),
     })
         .then(response => response)
         .then(data => {

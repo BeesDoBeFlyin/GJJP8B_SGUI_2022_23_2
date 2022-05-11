@@ -26,11 +26,11 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public RestCollection<Cheese> Cheeses { get; set; }
         public RestCollection<Milk> Milks { get; set; }
         public RestCollection<Buyer> Buyers { get; set; }
+        public RestService NonCruds { get; set; }
 
         private Cheese selectedCheese;
         private Milk selectedMilk;
         private Buyer selectedBuyer;
-
         public Cheese SelectedCheese
         {
             get { return selectedCheese; }
@@ -105,6 +105,9 @@ namespace GJJP8B_HFT_2021221.WFPClient
         #endregion
         #region noncruds
         public ICommand CheesesUnderPriceCommand { get; set; }
+        #endregion
+        #region non-cruds
+        public ICommand CanAffordBuyerCommand { get; set; }
         #endregion
 
         public static bool IsInDesignMode
@@ -236,6 +239,18 @@ namespace GJJP8B_HFT_2021221.WFPClient
                 });
                 SelectedBuyer = new Buyer();
 
+                #endregion
+                #region non-cruds
+                NonCruds = new RestService("http://localhost:37371/");
+
+                CanAffordBuyerCommand = new RelayCommand(() =>
+                {
+                    string output = "";
+                    var canAfford = NonCruds.Get<bool>("NonCrud/CanAfford");
+                    output = canAfford.ToString();
+                    MessageBox.Show(output);
+                }
+                );
                 #endregion
             }
         }

@@ -14,8 +14,7 @@ namespace GJJP8B_HFT_2021221.Logic
         Buyer GetOne(int id);
         IQueryable<Buyer> GetAll();
         void Update(Buyer buyer);
-        bool CanAffordGivenCheese(int id, int cheeseid);
-        IEnumerable<Buyer> ListBuyersWhoCanAffordPreferredCheese();
-        IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(int id); 
+
+        IEnumerable<Buyer> ListBuyersWithCheese();
     }
 }

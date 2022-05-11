@@ -14,6 +14,7 @@ namespace GJJP8B_HFT_2021221.Data
         
         public CheeseContext()
         {
+            //for some reason sometimes
            this.Database.EnsureCreated();
         }
 

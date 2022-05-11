@@ -93,6 +93,10 @@
         </TabItem>
         <TabItem Header="Buyer">
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -129,6 +133,7 @@
                     <Button Content="Update selected Buyer" Command="{Binding UpdateBuyerCommand}" Margin="10" Padding="10" />
                     <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
                 </StackPanel>
+                <Button Grid.Row="1" Margin="10,10,226,10" Command="{Binding CanAffordBuyerCommand}">nigger</Button>
             </Grid>
         </TabItem>
     </TabControl>

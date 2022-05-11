@@ -24,5 +24,10 @@ namespace GJJP8B_HFT_2021221.WFPClient
         {
             InitializeComponent();
         }
+
+        private void CanAffordBuyer(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

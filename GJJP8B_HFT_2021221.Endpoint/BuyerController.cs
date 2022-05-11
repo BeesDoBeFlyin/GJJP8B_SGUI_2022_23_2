@@ -55,26 +55,5 @@ namespace GJJP8B_HFT_2021221.Endpoint
             this.buyerLogic.Delete(id);
             this.hub.Clients.All.SendAsync("BuyerDeleted", buyerToDelete);
         }
-
-        [Route("CanAffordGivenCheese/{id}/{cheeseid}")]
-        [HttpGet]
-        public bool CanAfford(int id, int cheeseid)
-        {
-            return buyerLogic.CanAffordGivenCheese(id, cheeseid);
-        }
-
-        [Route("ListBuyersWhoCanAffordPreferredCheese")]
-        [HttpGet]
-        public IEnumerable<Buyer> ListBuyersWhoCanAffordGivenCheese()
-        {
-            return buyerLogic.ListBuyersWhoCanAffordPreferredCheese();
-        }
-
-        [Route("ListBuyersWithGivenCheesePreference/{id}")]
-        [HttpGet]
-        public IEnumerable<Buyer> ListBuyersWithGivenCheesePreference(int id)
-        {
-            return buyerLogic.ListBuyersWithGivenCheesePreference(id);
-        }
     }
 }

@@ -14,8 +14,5 @@ namespace GJJP8B_HFT_2021221.Logic
         Milk GetOne(int id);
         IQueryable<Milk> GetAll();
         void Update(Milk milk);
-        IEnumerable<Milk> MilksUnderPrice(float price);
-        IEnumerable<Milk> MilksAtPricePoint(float price);
-        IEnumerable<Milk> MilksAbovePrice(float price);
     }
 }
