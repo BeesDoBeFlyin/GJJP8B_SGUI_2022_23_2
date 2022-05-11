@@ -45,61 +45,75 @@ namespace GJJP8B_HFT_2021221.Logic
             this.repository.Update(cheese);
         }
 
-        public IEnumerable<Cheese> CheesesUnderPrice(float price)
+        public IEnumerable<Cheese> ListCheesesWithMilk()
         {
-            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price < price);
-
-            return cheeses;
-        }
-
-        public IEnumerable<Cheese> CheesesAtPrice(float price)
-        {
-            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price == price);
-
-            return cheeses;
-        }
-
-        public IEnumerable<Cheese> CheesesAbovePrice(float price)
-        {
-            IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price > price);
-
-            return cheeses;
-        }
-
-        public IEnumerable MadeOf(int id)
-        {
-            var madeOf = from a in milkRepo.ReturnAll()
-                         join b in repository.ReturnAll() on a.Id equals b.MilkId
-                         where (b.MilkId == id)
-                         select new Milk
+            var cheeses = from cheese in repository.ReturnAll()
+                         join milk in milkRepo.ReturnAll() on cheese.MilkId equals milk.Id
+                         select new Cheese
                          {
-                             Name = a.Name,
-                             Price = a.Price,
-                             Id = a.Id,
-                             CheesesNonDb = a.CheesesNonDb
+                             Id = cheese.Id,
+                             Name = cheese.Name,
+                             Price = cheese.Price,
+                             MilkId = cheese.MilkId
                          };
-
-            return madeOf as IEnumerable;
+            return cheeses;
         }
 
-        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(int id)
-        {
-            var cheeses = from a in repository.ReturnAll()
-                          join b in milkRepo.ReturnAll() on a.MilkId equals b.Id
-                          where (b.Id == id)
-                          select a;
+        //public IEnumerable<Cheese> CheesesUnderPrice(float price)
+        //{
+        //    IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price < price);
 
-            return cheeses as IEnumerable<Cheese>;
-        }
+        //    return cheeses;
+        //}
 
-        public IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
-        {
-            var cheeses = from a in repository.ReturnAll()
-                          join b in milkRepo.ReturnAll() on a.MilkId equals b.Id
-                          where (b.Price < price)
-                          select a;
+        //public IEnumerable<Cheese> CheesesAtPrice(float price)
+        //{
+        //    IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price == price);
 
-            return cheeses as IEnumerable<Cheese>;
-        }
+        //    return cheeses;
+        //}
+
+        //public IEnumerable<Cheese> CheesesAbovePrice(float price)
+        //{
+        //    IEnumerable<Cheese> cheeses = repository.ReturnAll().Where(x => x.Price > price);
+
+        //    return cheeses;
+        //}
+
+        //public IEnumerable MadeOf(int id)
+        //{
+        //    var madeOf = from a in milkRepo.ReturnAll()
+        //                 join b in repository.ReturnAll() on a.Id equals b.MilkId
+        //                 where (b.MilkId == id)
+        //                 select new Milk
+        //                 {
+        //                     Name = a.Name,
+        //                     Price = a.Price,
+        //                     Id = a.Id,
+        //                     CheesesNonDb = a.CheesesNonDb
+        //                 };
+
+        //    return madeOf as IEnumerable;
+        //}
+
+        //public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(int id)
+        //{
+        //    var cheeses = from a in repository.ReturnAll()
+        //                  join b in milkRepo.ReturnAll() on a.MilkId equals b.Id
+        //                  where (b.Id == id)
+        //                  select a;
+
+        //    return cheeses as IEnumerable<Cheese>;
+        //}
+
+        //public IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
+        //{
+        //    var cheeses = from a in repository.ReturnAll()
+        //                  join b in milkRepo.ReturnAll() on a.MilkId equals b.Id
+        //                  where (b.Price < price)
+        //                  select a;
+
+        //    return cheeses as IEnumerable<Cheese>;
+        //}
     }
 }

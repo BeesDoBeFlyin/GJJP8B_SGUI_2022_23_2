@@ -101,16 +101,16 @@ namespace GJJP8B_HFT_2021221.Test
             Assert.DoesNotThrow(() => ILogic.Update(bTest2));
         }
 
-        [Test]
-        public void BuyerCanAffordTest()
-        {
-            bool test = ILogic.CanAffordGivenCheese(1, 1);
-            bool test2 = ILogic.CanAffordGivenCheese(2, 1);
-            bool test3 = ILogic.CanAffordGivenCheese(3, 1);
+        //[Test]
+        //public void BuyerCanAffordTest()
+        //{
+        //    bool test = ILogic.CanAffordGivenCheese(1, 1);
+        //    bool test2 = ILogic.CanAffordGivenCheese(2, 1);
+        //    bool test3 = ILogic.CanAffordGivenCheese(3, 1);
 
-            Assert.That(test);
-            Assert.That(test2);
-            Assert.That(!test3);
-        }
+        //    Assert.That(test);
+        //    Assert.That(test2);
+        //    Assert.That(!test3);
+        //}
     }
 }

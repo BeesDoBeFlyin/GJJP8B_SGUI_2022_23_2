@@ -1,14 +1,10 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using GJJP8B_HFT_2021221.Models;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using GJJP8B_HFT_2021221.Models;
 
 namespace GJJP8B_HFT_2021221.WFPClient
 {
@@ -69,7 +65,7 @@ namespace GJJP8B_HFT_2021221.WFPClient
                 }
             }
         }
-        
+
         public Buyer SelectedBuyer
         {
             get { return selectedBuyer; }
@@ -104,10 +100,9 @@ namespace GJJP8B_HFT_2021221.WFPClient
         public ICommand UpdateBuyerCommand { get; set; }
         #endregion
         #region noncruds
-        public ICommand CheesesUnderPriceCommand { get; set; }
-        #endregion
-        #region non-cruds
-        public ICommand CanAffordBuyerCommand { get; set; }
+        public ICommand NonCrud3 { get; set; }
+        public ICommand NonCrud2 { get; set; }
+        public ICommand NonCrud1 { get; set; }
         #endregion
 
         public static bool IsInDesignMode
@@ -160,12 +155,6 @@ namespace GJJP8B_HFT_2021221.WFPClient
                     return SelectedCheese != null;
                 });
                 SelectedCheese = new Cheese();
-                #endregion
-                #region noncruds
-                CheesesUnderPriceCommand = new RelayCommand(() =>
-                {
-                    //:(
-                });
                 #endregion
                 #endregion
                 #region Milk
@@ -243,14 +232,30 @@ namespace GJJP8B_HFT_2021221.WFPClient
                 #region non-cruds
                 NonCruds = new RestService("http://localhost:37371/");
 
-                CanAffordBuyerCommand = new RelayCommand(() =>
+                NonCrud1 = new RelayCommand(() =>
                 {
                     string output = "";
-                    var canAfford = NonCruds.Get<bool>("NonCrud/CanAfford");
-                    output = canAfford.ToString();
+                    var daInfo = NonCruds.Get<Buyer>("noncrud/ListBuyersWithCheese");
+                    output = $"{SelectedBuyer.Name} has the preffered cheese with Id {SelectedBuyer.CheeseId}.";
                     MessageBox.Show(output);
                 }
                 );
+
+                NonCrud2 = new RelayCommand(() =>
+                {
+                    string output = "";
+                    var daInfo = NonCruds.Get<Cheese>("noncrud/ListCheesesWithMilk");
+                    output = $"{SelectedCheese.Name} is made out of milk with Id {SelectedCheese.MilkId}.";
+                    MessageBox.Show(output);
+                });
+
+                NonCrud3 = new RelayCommand(() =>
+                {
+                    string output = "";
+                    var daInfo = NonCruds.Get<Milk>("noncrud/ListMilksId");
+                    output = $"{SelectedMilk.Name} has the Id {SelectedMilk.Id}.";
+                    MessageBox.Show(output);
+                });
                 #endregion
             }
         }

@@ -15,5 +15,6 @@ namespace GJJP8B_HFT_2021221.Logic
         Cheese GetOne(int id);
         IQueryable<Cheese> GetAll();
         void Update(Cheese cheese);
+        IEnumerable<Cheese> ListCheesesWithMilk();
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GJJP8B_HFT_2021221.WFPClient"
         mc:Ignorable="d"
-        Title="Table Editor" Height="450" Width="800">
+        Title="Table Editor" Height="550" Width="800">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
@@ -13,14 +13,16 @@
         <TabItem Header="Cheese">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="103*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="285*"/>
+                    <ColumnDefinition Width="397*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="9*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <ListBox ItemsSource="{Binding Cheeses}" SelectedItem="{Binding SelectedCheese}" Grid.Row="0">
+                <ListBox ItemsSource="{Binding Cheeses}" SelectedItem="{Binding SelectedCheese}" Grid.Row="0" Grid.ColumnSpan="3">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -33,26 +35,23 @@
                                 <Label Content="{Binding Id}" Grid.Column="0" />
                                 <Label Content="{Binding Name}" Grid.Column="1"/>
                                 <Label Content="{Binding Price}" Grid.Column="2"/>
-                                <Label Content="{Binding MilkId}" Grid.Column="3"/>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Column="1" Grid.RowSpan="2">
+                <StackPanel Grid.Column="3" Grid.RowSpan="2">
                     <Label Content="Name" Background="LightBlue" Padding="5" />
                     <TextBox Text="{Binding SelectedCheese.Name}" Padding="5" Margin="0,0,0,5" />
                     <Label Content="Id" Background="LightBlue" Padding="5" />
                     <TextBox Text="{Binding SelectedCheese.Id}" Padding="5" Margin="0,0,0,5" IsEnabled="False" />
                     <Label Content="Price" Background="LightBlue" Padding="5" />
                     <TextBox Text="{Binding SelectedCheese.Price}" Padding="5" Margin="0,0,0,5" />
-                    <Label Content="Milk Id" Background="LightBlue" Padding="5" />
-                    <TextBox Text="{Binding SelectedCheese.MilkId}" Padding="5" Margin="0,0,0,5" />
                     <Button Content="Add new cheese" Command="{Binding CreateCheeseCommand}" Margin="10,10,10,10" Padding="10" />
                     <Button Content="Delete selected cheese" Command="{Binding DeleteCheeseCommand}" Margin="10" Padding="10" />
                     <Button Content="Update selected cheese" Command="{Binding UpdateCheeseCommand}" Margin="10" Padding="10" />
                     <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
                 </StackPanel>
-                <Button Content="Something something noncrud" Command="{Binding }" Grid.Column="0" Grid.Row="1" Margin="10,11,274,10"/>
+                <Button Command="{Binding NonCrud2}" Grid.Column="0" Grid.Row="1" Margin="10,11,21,10" Grid.ColumnSpan="3" FontWeight="Bold" FontSize="16">Show selected cheese's material</Button>
             </Grid>
         </TabItem>
         <TabItem Header="Milk">
@@ -80,14 +79,13 @@
                 <StackPanel Grid.Column="1">
                     <Label Content="Name" Background="LightBlue" Padding="5" />
                     <TextBox Text="{Binding SelectedMilk.Name}" Padding="5" Margin="0,0,0,5" />
-                    <Label Content="Id" Background="LightBlue" Padding="5" />
-                    <TextBox Text="{Binding SelectedMilk.Id}" Padding="5" Margin="0,0,0,5" IsEnabled="False" />
                     <Label Content="Price" Background="LightBlue" Padding="5" />
                     <TextBox Text="{Binding SelectedMilk.Price}" Padding="5" Margin="0,0,0,5" />
                     <Button Content="Add new M I L K" Command="{Binding CreateMilkCommand}" Margin="10,10,10,10" Padding="10" />
                     <Button Content="Delete selected M I L K" Command="{Binding DeleteMilkCommand}" Margin="10" Padding="10" />
                     <Button Content="Update selected M I L K" Command="{Binding UpdateMilkCommand}" Margin="10" Padding="10" />
                     <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+                    <Button Command="{Binding NonCrud3}" Margin="10" Padding="10" FontWeight="Bold" FontSize="16">Show selected milk's Id</Button>
                 </StackPanel>
             </Grid>
         </TabItem>
@@ -126,14 +124,12 @@
                     <TextBox Text="{Binding SelectedBuyer.Id}" Padding="5" Margin="0,0,0,5" IsEnabled="False" />
                     <Label Content="Money" Background="LightBlue" Padding="5" />
                     <TextBox Text="{Binding SelectedBuyer.Money}" Padding="5" Margin="0,0,0,5" />
-                    <Label Content="Preferred cheese" Background="LightBlue" Padding="5" />
-                    <TextBox Text="{Binding SelectedBuyer.CheeseId}" Padding="5" Margin="0,0,0,5" />
                     <Button Content="Add new Buyer" Command="{Binding CreateBuyerCommand}" Margin="10,10,10,10" Padding="10" />
                     <Button Content="Delete selected Buyer" Command="{Binding DeleteBuyerCommand}" Margin="10" Padding="10" />
                     <Button Content="Update selected Buyer" Command="{Binding UpdateBuyerCommand}" Margin="10" Padding="10" />
                     <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
                 </StackPanel>
-                <Button Grid.Row="1" Margin="10,10,226,10" Command="{Binding CanAffordBuyerCommand}">nigger</Button>
+                <Button Margin="10,10,10,10" Command="{Binding NonCrud1}" FontWeight="Bold" FontSize="14" Grid.Row="1">Show Selected Buyer's Preferred cheese</Button>
             </Grid>
         </TabItem>
     </TabControl>

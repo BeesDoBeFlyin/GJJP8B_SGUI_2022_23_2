@@ -40,25 +40,37 @@ namespace GJJP8B_HFT_2021221.Logic
             this.repository.Update(milk);
         }
 
-        public IEnumerable<Milk> MilksUnderPrice(float price)
+        public IEnumerable<Milk> ShowMilksId()
         {
-            IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price < price);
-
+            var milks = from milk in repository.ReturnAll()
+                        join milk2 in repository.ReturnAll() on milk.Id equals milk2.Id
+                        select new Milk
+                        {
+                            Id = milk.Id,
+                            Name = milk2.Name,
+                            Price = milk2.Price
+                        };
             return milks;
         }
+        //public IEnumerable<Milk> MilksUnderPrice(float price)
+        //{
+        //    IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price < price);
 
-        public IEnumerable<Milk> MilksAtPricePoint(float price)
-        {
-            IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price == price);
+        //    return milks;
+        //}
 
-            return milks;
-        }
+        //public IEnumerable<Milk> MilksAtPricePoint(float price)
+        //{
+        //    IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price == price);
+
+        //    return milks;
+        //}
         
-        public IEnumerable<Milk> MilksAbovePrice(float price)
-        {
-            IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price > price);
+        //public IEnumerable<Milk> MilksAbovePrice(float price)
+        //{
+        //    IEnumerable<Milk> milks = repository.ReturnAll().Where(x => x.Price > price);
 
-            return milks;
-        }
+        //    return milks;
+        //}
     }
 }

@@ -14,7 +14,7 @@ namespace GJJP8B_HFT_2021221.Data
         
         public CheeseContext()
         {
-            //for some reason sometimes
+            //for some reason sometimes it throws an unhandled exception, restart if it does
            this.Database.EnsureCreated();
         }
 

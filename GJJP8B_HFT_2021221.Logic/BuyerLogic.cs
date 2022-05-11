@@ -48,7 +48,13 @@ namespace GJJP8B_HFT_2021221.Logic
         {
             var buyers = from buyer in repository.ReturnAll()
                          join cheese in cheeseRepo.ReturnAll() on buyer.CheeseId equals cheese.Id
-                         select buyer;
+                         select new Buyer
+                         {
+                             Id = buyer.Id,
+                             Name = buyer.Name,
+                             Money = buyer.Money,
+                             CheeseId = buyer.CheeseId
+                         };
             return buyers;
         }
 

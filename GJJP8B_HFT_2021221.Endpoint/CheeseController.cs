@@ -53,47 +53,5 @@ namespace GJJP8B_HFT_2021221.Endpoint
             this.cheeseLogic.Delete(id);
             this.hub.Clients.All.SendAsync("CheeseDeleted", cheeseToDelete);
         }
-
-        [Route("UnderPrice/{price}")]
-        [HttpGet]
-        public IEnumerable<Cheese> GetCheesesUnderPrce(float price)
-        {
-            return cheeseLogic.CheesesUnderPrice(price);
-        }
-
-        [Route("AtPrice/{price}")]
-        [HttpGet]
-        public IEnumerable<Cheese> GetCheesesAtPrice(float price)
-        {
-            return cheeseLogic.CheesesAtPrice(price);
-        }
-
-        [Route("AbovePrice/{price}")]
-        [HttpGet]
-        public IEnumerable<Cheese> GetCheesesAbovePrce(float price)
-        {
-            return cheeseLogic.CheesesAbovePrice(price);
-        }
-
-        [Route("MadeOf/{id}")]
-        [HttpGet]
-        public IEnumerable MadeOf(int id)
-        {
-            return cheeseLogic.MadeOf(id);
-        }
-
-        [Route("ListCheesesMadeOfGivenMilk/{id}")]
-        [HttpGet]
-        public IEnumerable<Cheese> ListCheesesMadeOfGivenMilk(int id)
-        {
-            return cheeseLogic.ListCheesesMadeOfGivenMilk(id);
-        }
-
-        [Route("ListCheesesWithMaterialCheaperThanGiven/{price}")]
-        [HttpGet]
-        public IEnumerable<Cheese> ListCheesesWithMaterialCheaperThanGiven(float price)
-        {
-            return cheeseLogic.ListCheesesWithMaterialCheaperThanGiven(price);
-        }
     }
 }
