@@ -30,16 +30,6 @@ namespace GJJP8B_HFT_2021221.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Cheese>()
-            //    .HasOne<Milk>(c => c.Milk)
-            //    .WithMany(m => m.Cheeses)
-            //    .HasForeignKey(c => c.MilkId)
-            //    .OnDelete(DeleteBehavior.ClientSetNull);
-            //modelBuilder.Entity<Buyer>()
-            //    .HasOne<Cheese>(b => b.Cheese)
-            //    .WithMany(c => c.Buyers)
-            //    .HasForeignKey(b => b.CheeseId)
-            //    .OnDelete(DeleteBehavior.ClientSetNull);
 
             Milk m1 = new() { Id = 1, Name = "CowMilk", Price = 250, CheesesNonDb = new List<Cheese>() };
             Milk m2 = new() { Id = 2, Name = "GoatMilk", Price = 550, CheesesNonDb = new List<Cheese>() };

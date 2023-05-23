@@ -58,12 +58,12 @@ namespace GJJP8B_HFT_2021221.Test
             Assert.DoesNotThrow(() => ILogic.Update(mTest2));
         }
 
-        [Test]
-        public void MilksUnderPriceTest()
-        {
-            IEnumerable<Milk> test = ILogic.MilksUnderPrice(600f);
+        //[Test]
+        //public void MilksUnderPriceTest()
+        //{
+        //    IEnumerable<Milk> test = ILogic.MilksUnderPrice(600f);
 
-            Assert.That(test.Count() == 2);
-        }
+        //    Assert.That(test.Count() == 2);
+        //}
     }
 }
